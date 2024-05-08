@@ -1,8 +1,7 @@
 package br.com.nomeempresa.restaurante.config;
 
-import br.com.nomeempresa.restaurante.adapters.outbound.BuscarEnderecoAdapter;
-import br.com.nomeempresa.restaurante.adapters.outbound.SalvarUsuarioAdapter;
-import br.com.nomeempresa.restaurante.core.service.SalvarUsuarioService;
+import br.com.nomeempresa.restaurante.adapters.outbound.UsuarioAdapter;
+import br.com.nomeempresa.restaurante.core.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
     @Bean
-    public SalvarUsuarioService salvarUsuarioService(SalvarUsuarioAdapter salvarUsuarioAdapter, BuscarEnderecoAdapter buscarEnderecoAdapter){
-        return new SalvarUsuarioService(salvarUsuarioAdapter, buscarEnderecoAdapter);
+    public UsuarioService salvarUsuarioService(UsuarioAdapter salvarUsuarioAdapter){
+        return new UsuarioService(salvarUsuarioAdapter);
     }
 }

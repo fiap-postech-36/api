@@ -1,0 +1,6 @@
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/core/service/UsuarioService.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/core/domain/Usuario.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/core/exception/CoreExceptionNegocial.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/ports/out/UsuarioPort.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/core/exception/CoreExceptionRuntime.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-application-core/src/main/java/br/com/nomeempresa/restaurante/ports/in/UsuarioServicePort.java

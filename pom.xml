@@ -16,10 +16,33 @@
 
   <url>http://www.restaurantenomeempresa.com.br</url>
 
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Daniel Matos</name>
+            <email>danpereiramatos@gmail.com</email>
+            <organization>TechChalleng Desafio Restaurante</organization>
+            <organizationUrl>https://www.restaurantenomeempresa.com.br/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>git@github.com:danpereiramatos/restaurante.git</url>
+        <connection>scm:git@github.com:danpereiramatos/restaurante.git</connection>
+        <developerConnection>scm:git:git@github.com:danpereiramatos/restaurante.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>  
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
       
   
@@ -43,13 +66,4 @@
         </dependency>
     </dependencies>
 </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

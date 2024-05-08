@@ -1,0 +1,4 @@
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-aplicacao-banco-dados/src/main/java/br/com/nomeempresa/restaurante/adapters/inbound/entity/UsuarioEntity.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-aplicacao-banco-dados/src/main/java/br/com/nomeempresa/restaurante/adapters/inbound/mapper/ConversorUsuarioDominioEntidade.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-aplicacao-banco-dados/src/main/java/br/com/nomeempresa/restaurante/adapters/outbound/repository/UsuarioRepository.java
+/home/daniel/Documentos/projeto-git/restaurante/restaurante/restaurante-aplicacao-banco-dados/src/main/java/br/com/nomeempresa/restaurante/adapters/outbound/UsuarioAdapter.java

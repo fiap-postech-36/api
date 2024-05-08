@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -15,18 +14,13 @@ public class UsuarioEntity{
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
 
+    @Column( nullable = false )
     private String nome;
 
-    private String instagram;
+    @Column( nullable = false,unique=true,length=11)
+    private String cpf;
 
-    private String linkedin;
-
-    private String github;
-
-    private LocalDate dataNascimento;
-
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "endereco_id")
-    private EnderecoEntity endereco;
+    @Column( nullable = false,length=50)
+    private String email;
 
 }

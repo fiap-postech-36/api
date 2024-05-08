@@ -1,0 +1,4 @@
+br/com/nomeempresa/restaurante/adapters/inbound/entity/UsuarioEntity.class
+br/com/nomeempresa/restaurante/adapters/inbound/mapper/ConversorUsuarioDominioEntidade.class
+br/com/nomeempresa/restaurante/adapters/outbound/repository/UsuarioRepository.class
+br/com/nomeempresa/restaurante/adapters/outbound/UsuarioAdapter.class

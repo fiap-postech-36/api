@@ -1,22 +1,16 @@
 package br.com.nomeempresa.restaurante.core.domain;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private Long id;
 
     private String nome;
 
-    private String instagram;
+    private String cpf;
 
-    private String linkedin;
-
-    private String github;
-
-    private LocalDate dataNascimento;
-
-    private Endereco endereco;
+    private String email;
 
     public Long getId() {
         return id;
@@ -34,43 +28,19 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getInstagram() {
-        return instagram;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setInstagram(String instagram) {
-        this.instagram = instagram;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getLinkedin() {
-        return linkedin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
-    }
-
-    public String getGithub() {
-        return github;
-    }
-
-    public void setGithub(String github) {
-        this.github = github;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

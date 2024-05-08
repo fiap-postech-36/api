@@ -1,24 +1,25 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+
 
 @Getter
 @Setter
 public class UsuarioRequest {
 
+    private Long id;
+
+    @NotNull
     private String nome;
 
-    private String instagram;
+    @NotNull
+    private String cpf;
 
-    private String linkedin;
-
-    private String github;
-
-    private LocalDate dataNascimento;
-
-    private String cep;
+    @Email
+    private String email;
 
 }

@@ -1,0 +1,6 @@
+br/com/nomeempresa/restaurante/ports/in/UsuarioServicePort.class
+br/com/nomeempresa/restaurante/ports/out/UsuarioPort.class
+br/com/nomeempresa/restaurante/core/service/UsuarioService.class
+br/com/nomeempresa/restaurante/core/exception/CoreExceptionRuntime.class
+br/com/nomeempresa/restaurante/core/exception/CoreExceptionNegocial.class
+br/com/nomeempresa/restaurante/core/domain/Usuario.class

@@ -6,9 +6,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UsuarioRequestToUsuarioMapper {
+public class ConversorRequestDominio {
 
-    public Usuario mapper(UsuarioRequest usuarioRequest){
+    public Usuario converterUsuarioParaDominio(UsuarioRequest usuarioRequest){
         var usuario = new Usuario();
         BeanUtils.copyProperties(usuarioRequest, usuario);
         return usuario;
