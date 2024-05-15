@@ -1,10 +1,8 @@
-FROM eclipse-temurin:17-jdk-alpine
-RUN apk update
-RUN apk add dos2unix
-RUN apk add bash
-RUN apk add maven
-RUN mkdir -p /opt/app/nomeempresa/restaurante
-COPY /target/*.jar /opt/app/nomeempresa/restaurante/appNomeEmpresaRestaurante.jar
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+COPY target/application.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/opt/app/nomeempresa/restaurante/appNomeEmpresaRestaurante.jar"]
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

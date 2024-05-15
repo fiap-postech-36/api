@@ -4,6 +4,7 @@ import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDo
 import br.com.nomeempresa.restaurante.adapters.inbound.request.UsuarioRequest;
 import br.com.nomeempresa.restaurante.core.domain.Usuario;
 import br.com.nomeempresa.restaurante.ports.in.UsuarioServicePort;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class UsuarioController {
     private final ConversorRequestDominio conversor;
 
     @PostMapping
-    public Usuario salvarUsuario(@RequestBody UsuarioRequest usuarioRequest){
+    public Usuario salvarUsuario(@RequestBody @Valid UsuarioRequest usuarioRequest){
         var usuario = conversor.converterUsuarioParaDominio(usuarioRequest);
         return salvarUsuarioServicePort.salvar(usuario);
     }

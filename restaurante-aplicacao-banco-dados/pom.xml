@@ -38,6 +38,8 @@
       <groupId>br.com.nomeempresa.restaurante</groupId>
       <artifactId>restaurante-application-core</artifactId>
     </dependency>
+
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

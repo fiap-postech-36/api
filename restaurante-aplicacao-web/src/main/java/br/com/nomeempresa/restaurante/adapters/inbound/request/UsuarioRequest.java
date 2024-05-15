@@ -1,25 +1,14 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.request;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
 
 
-@Getter
-@Setter
-public class UsuarioRequest {
-
-    private Long id;
-
-    @NotNull
-    private String nome;
-
-    @NotNull
-    private String cpf;
-
-    @Email
-    private String email;
+public record UsuarioRequest (
+        Long id,
+        @NotBlank String nome,
+        @NotBlank String cpf,
+        @NotBlank @Email String email){
 
 }
