@@ -1,4 +1,5 @@
 # restaurante
+# https://miro.com/app/board/uXjVMK9tIRA=/?share_link_id=894564369501
 Sistema de apoio ao negócio de restaurante
 pre-requisitos: Ter docker instalado
 
