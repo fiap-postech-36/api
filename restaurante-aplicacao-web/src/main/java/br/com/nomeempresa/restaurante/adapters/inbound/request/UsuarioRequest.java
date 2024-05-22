@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 
 
 public record UsuarioRequest (
-        Long id,
+        Long idUsuario,
         @NotBlank String nome,
         @NotBlank String cpf,
         @NotBlank @Email String email){

@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>br.com.nomeempresa.restaurante</groupId>
+
   <artifactId>restaurante-aplicacao-web</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -42,10 +42,6 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>br.com.nomeempresa.restaurante</groupId>
-      <artifactId>restaurante-aplicacao-banco-dados</artifactId>
     </dependency>
 
     <dependency>

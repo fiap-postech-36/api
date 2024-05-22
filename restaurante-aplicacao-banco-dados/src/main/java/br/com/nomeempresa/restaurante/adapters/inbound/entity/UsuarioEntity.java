@@ -5,15 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 @Entity
 @Getter
 @Setter
 public class UsuarioEntity{
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "idUsuario", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
-    private Long id;
+    private Long idUsuario;
 
     @Column( nullable = false )
     private String nome;
