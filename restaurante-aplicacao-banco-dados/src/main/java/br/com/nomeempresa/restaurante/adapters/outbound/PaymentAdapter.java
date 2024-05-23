@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.adapters.outbound;
 
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.PaymentRepository;
 import br.com.nomeempresa.restaurante.core.domain.Payment;
+import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.out.IPaymentPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class PaymentAdapter implements IPaymentPort {
 
     @Override
     public Payment generatedPayment(Payment payment) {
-        Payment paymentDTO = new Payment(payment.getAmount(), payment.getClient(), payment.getDate(), payment.getProduct(), payment.getStatus());
+        Payment paymentDTO = new Payment(payment.getAmount(), payment.getClient(), payment.getProduct(), payment.getStatus());
 
         payments.add(paymentDTO);
 
@@ -39,7 +40,7 @@ public class PaymentAdapter implements IPaymentPort {
     }
 
     @Override
-    public String getStatusPayment(Long id) {
+    public StatusPayment getStatusPayment(Long id) {
         return recoverDataPayment(id).getStatus();
     }
 

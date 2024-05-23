@@ -1,6 +1,7 @@
 package br.com.nomeempresa.restaurante.core.service;
 
 import br.com.nomeempresa.restaurante.core.domain.Payment;
+import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.in.IPaymentServicePort;
 import br.com.nomeempresa.restaurante.ports.out.IPaymentPort;
 
@@ -31,7 +32,7 @@ public class PaymentService implements IPaymentServicePort {
     }
 
     @Override
-    public String getStatusPayment(Long id) {
+    public StatusPayment getStatusPayment(Long id) {
         return iPaymentPort.getStatusPayment(id);
     }
 
