@@ -17,7 +17,8 @@ public class Payment  implements Serializable {
     public Payment() {}
 
     public Payment(BigDecimal amount, String client, LocalDate date, String product, String status) {
-        this.id = new Random().nextLong();
+        Random random = new Random();
+        this.id = (long) random.nextInt(100);;
         this.amount = amount;
         this.client = client;
         this.date = date;
