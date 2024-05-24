@@ -1,0 +1,4 @@
+docker stop $(docker ps -a -q)
+docker build -t restaurante_postgres:1.0 --build-arg DB_USER=postgres --build-arg DB_PASSWORD=postgres --build-arg DB_NAME=dev .
+docker run --name restaurante_postgres_container -d -p 5432:5432 restaurante_postgres:1.0
+
