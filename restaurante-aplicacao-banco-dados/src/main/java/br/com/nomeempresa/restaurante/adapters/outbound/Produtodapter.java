@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -36,7 +37,6 @@ public class Produtodapter implements ProdutoPort {
     @Transactional
     public Produto editar(Produto produto){
         Optional<ProdutoEntity> optionalEntity = produtoRepository.findById(produto.getIdentificadorProduto());
-
         if(optionalEntity.isPresent()){
             var produtoEntity = optionalEntity.get();
             produtoEntity.setNome(produto.getNome());
@@ -45,9 +45,12 @@ public class Produtodapter implements ProdutoPort {
             produtoEntity.setUrlImagem(produto.getUrlImagem());
             return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
         }
-
         return null;
+    }
 
+    @Override
+    public void excluir(Long id) {
+        produtoRepository.deleteById(id);
     }
 
     @Override
@@ -57,9 +60,13 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     public Collection<Produto> buscarPorCategoria(Categoria categoria) {
-
         CategoriaEnum categoriaEntidade= conversorCategoria.converterParaEntidade(categoria);
-        Collection<Produto> produtos = conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
-        return produtos;
+        return conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
+    }
+
+    @Override
+    public Collection<Produto> buscarTodos() {
+        List<ProdutoEntity> produtosEntity = produtoRepository.findAll();
+        return conversorProduto.converterColecaoParaDominio(produtosEntity);
     }
 }
