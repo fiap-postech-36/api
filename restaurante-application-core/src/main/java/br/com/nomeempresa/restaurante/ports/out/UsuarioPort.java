@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.ports.out;
 
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
+import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 
 import java.util.Collection;
 

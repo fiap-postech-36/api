@@ -2,13 +2,9 @@ package br.com.nomeempresa.restaurante.adapters.inbound;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.ProdutoRequest;
-import br.com.nomeempresa.restaurante.adapters.inbound.request.UsuarioRequest;
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
-import br.com.nomeempresa.restaurante.core.domain.Payment;
-import br.com.nomeempresa.restaurante.core.domain.Produto;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
+import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import br.com.nomeempresa.restaurante.ports.in.ProdutoServicePort;
-import br.com.nomeempresa.restaurante.ports.in.UsuarioServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

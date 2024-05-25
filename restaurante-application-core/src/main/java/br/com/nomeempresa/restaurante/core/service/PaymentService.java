@@ -1,7 +1,7 @@
 package br.com.nomeempresa.restaurante.core.service;
 
-import br.com.nomeempresa.restaurante.core.domain.Payment;
-import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
+import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
+import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.in.IPaymentServicePort;
 import br.com.nomeempresa.restaurante.ports.out.IPaymentPort;
 

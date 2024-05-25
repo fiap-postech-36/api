@@ -2,7 +2,7 @@ package br.com.nomeempresa.restaurante.adapters.inbound;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.UsuarioRequest;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
+import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 import br.com.nomeempresa.restaurante.ports.in.UsuarioServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

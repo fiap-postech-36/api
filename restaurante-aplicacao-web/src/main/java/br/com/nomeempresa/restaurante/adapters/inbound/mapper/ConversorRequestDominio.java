@@ -3,9 +3,9 @@ package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.PaymentRequest;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.ProdutoRequest;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.UsuarioRequest;
-import br.com.nomeempresa.restaurante.core.domain.Payment;
-import br.com.nomeempresa.restaurante.core.domain.Produto;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
+import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
+import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
+import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 

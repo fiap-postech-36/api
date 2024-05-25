@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.UsuarioEntity;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
+import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 
 @Component
 public class ConversorUsuarioDominioEntidade {
