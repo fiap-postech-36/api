@@ -26,23 +26,23 @@ http://localhost:8080/restaurante/swagger-ui/index.html#/
 #Instalação 2
 
 <p>
-Sistema de apoio ao negócio de restaurante
-pre-requisitos: Ter docker instalado
+Sistema de apoio ao negócio de restaurante </br>
+pre-requisitos: Ter docker instalado </br>
 
-1-Raiz do projeto executar o comando: mvn package
-2-Raiz do projeto executar o comando: mvn spring-boot:build-image
-3-Na pastar docker executar o comando: docker compose up -d
+1-Raiz do projeto executar o comando: mvn package </br>
+2-Raiz do projeto executar o comando: mvn spring-boot:build-image </br>
+3-Na pastar docker executar o comando: docker compose up -d </br>
 
 
 #Swagger
-Para acessar o Swagger da aplicação
-http://localhost:8080/restaurante/swagger-ui/index.html#/
+Para acessar o Swagger da aplicação </br>
+http://localhost:8080/restaurante/swagger-ui/index.html#/ </br>
 
-Imagemd criada restaurante-aplicacao-web:1.0-SNAPSHOT
-Executar apenas a imagem da aplicação
-docker run -p 8080:8080 restaurante-aplicacao-web:1.0-SNAPSHOT
+Imagemd criada restaurante-aplicacao-web:1.0-SNAPSHOT </br>
+Executar apenas a imagem da aplicação </br>
+docker run -p 8080:8080 restaurante-aplicacao-web:1.0-SNAPSHOT </br>
 </p>
 <p>
-#https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante
-#https://miro.com/app/board/uXjVMK9tIRA=/?share_link_id=894564369501
+#https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante </br>
+#https://miro.com/app/board/uXjVMK9tIRA=/?share_link_id=894564369501 </br>
 </p>
