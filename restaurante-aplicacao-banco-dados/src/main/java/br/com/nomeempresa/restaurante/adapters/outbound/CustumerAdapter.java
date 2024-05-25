@@ -1,9 +1,9 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorUsuarioDominioEntidade;
+import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorCustumerDomainEntity;
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.UsuarioRepository;
 import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
-import br.com.nomeempresa.restaurante.ports.out.UsuarioPort;
+import br.com.nomeempresa.restaurante.ports.out.CustumerPort;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,11 +13,11 @@ import java.util.Collection;
 
 @Component
 @AllArgsConstructor
-public class UsuarioAdapter implements UsuarioPort {
+public class UsuarioAdapter implements CustumerPort {
 
     private final UsuarioRepository usuarioRepository;
 
-    private final ConversorUsuarioDominioEntidade conversorUsuario;
+    private final ConversorCustumerDomainEntity conversorUsuario;
 
     @Override
     @Transactional

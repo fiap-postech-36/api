@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.UsuarioEntity;
+import br.com.nomeempresa.restaurante.adapters.inbound.entity.CustumerEntity;
 import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 
 @Component
 public class ConversorUsuarioDominioEntidade {
 
-    public Usuario converterParaDominio(Optional<UsuarioEntity> usuarioEntity) {
+    public Usuario converterParaDominio(Optional<CustumerEntity> usuarioEntity) {
         return usuarioEntity.map(this::converterParaDominioComTratamento).orElse(null);
     }
-    public Usuario converterParaDominioComTratamento(UsuarioEntity usuarioEntity) {
+    public Usuario converterParaDominioComTratamento(CustumerEntity usuarioEntity) {
         try {
             return converterParaDominio(usuarioEntity);
         } catch (Exception e) {
@@ -22,7 +22,7 @@ public class ConversorUsuarioDominioEntidade {
         }
     }
 
-    public Usuario converterParaDominio(UsuarioEntity usuarioEntity) {
+    public Usuario converterParaDominio(CustumerEntity usuarioEntity) {
         // Implementação da conversão de UsuarioEntity para Usuario
         Usuario usuario = new Usuario();
         usuario.setId(usuarioEntity.getId());
@@ -32,9 +32,9 @@ public class ConversorUsuarioDominioEntidade {
         return usuario;
     }
 
-    public UsuarioEntity converterParaEntidade(Usuario usuario){
+    public CustumerEntity converterParaEntidade(Usuario usuario){
         // Implementação da conversão de Usuario para UsuarioEntity
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
+        CustumerEntity usuarioEntity = new CustumerEntity();
         usuarioEntity.setId(usuario.getId());
         usuarioEntity.setNome(usuario.getNome());
         usuarioEntity.setCpf(usuario.getCpf());
@@ -42,7 +42,7 @@ public class ConversorUsuarioDominioEntidade {
         return usuarioEntity;
     }
 
-    public Collection<Usuario> converterColecaoParaDominio(Collection<UsuarioEntity> usuarioEntities) {
+    public Collection<Usuario> converterColecaoParaDominio(Collection<CustumerEntity> usuarioEntities) {
         return Optional.ofNullable(usuarioEntities)
                 .map(entities -> entities.stream()
                         .map(this::converterParaDominioComTratamento)
