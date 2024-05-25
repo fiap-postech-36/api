@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
@@ -17,11 +18,11 @@ public record ProdutoRequest(
 
         @NotBlank(message = "URL da imagem é obrigatório") String urlImagem,
 
-        @NotBlank(message = "Preçoe é obrigatório")
+        @NotNull(message = "Preçoe é obrigatório")
         @DecimalMin(message = "Menor valor é zero", value = "1.0", inclusive = true)
         BigDecimal preco,
 
-        @NotBlank(message = "Catégoria é obrigatório")
+        @NotNull(message = "Catégoria é obrigatório")
         Categoria categoria){
 
 }
