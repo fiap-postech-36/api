@@ -26,11 +26,17 @@ public class UsuarioAdapter implements UsuarioPort {
 
     @Override
     public Usuario buscarPorId(Long id) {
-        return conversorUsuario.converterParaDominio(usuarioRepository.findById(id));
+        return conversorUsuario.converterParaDominio(
+            usuarioRepository.findById(id)
+                .orElseThrow()
+        );
     }
 
     @Override
     public Usuario buscarPorCpf(String cpf) {
-        return conversorUsuario.converterParaDominio(usuarioRepository.buscarPorCpf(cpf));
+        return conversorUsuario.converterParaDominio(
+            usuarioRepository.buscarPorCpf(cpf)
+                .orElseThrow()
+        );
     }
 }

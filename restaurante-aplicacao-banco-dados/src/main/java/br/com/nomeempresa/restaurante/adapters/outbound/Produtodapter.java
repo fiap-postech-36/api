@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Optional;
 
 
 @Component
@@ -34,31 +33,28 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     @Transactional
-    public Produto editar(Produto produto){
-        Optional<ProdutoEntity> optionalEntity = produtoRepository.findById(produto.getIdentificadorProduto());
+    public Produto editar(Produto produto) {
+        ProdutoEntity produtoEntity = produtoRepository.findById(produto.getIdentificadorProduto())
+            .orElseThrow();
 
-        if(optionalEntity.isPresent()){
-            var produtoEntity = optionalEntity.get();
-            produtoEntity.setNome(produto.getNome());
-            produtoEntity.setDescricao(produto.getDescricao());
-            produtoEntity.setPreco(produto.getPreco());
-            produtoEntity.setUrlImagem(produto.getUrlImagem());
-            return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
-        }
-
-        return null;
+        produtoEntity.setNome(produto.getNome());
+        produtoEntity.setDescricao(produto.getDescricao());
+        produtoEntity.setPreco(produto.getPreco());
+        produtoEntity.setUrlImagem(produto.getUrlImagem());
+        return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
 
     }
 
     @Override
     public Produto buscarPorId(Long id) {
-        return conversorProduto.converterParaDominio(produtoRepository.findById(id));
+        return conversorProduto.converterParaDominio(produtoRepository.findById(id)
+            .orElseThrow());
     }
 
     @Override
     public Collection<Produto> buscarPorCategoria(Categoria categoria) {
 
-        CategoriaEnum categoriaEntidade= conversorCategoria.converterParaEntidade(categoria);
+        CategoriaEnum categoriaEntidade = conversorCategoria.converterParaEntidade(categoria);
         Collection<Produto> produtos = conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
         return produtos;
     }
