@@ -11,9 +11,8 @@ import lombok.Setter;
 @Setter
 public class UsuarioEntity{
     @Id
-    @Column(name = "idusuario")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
-    private Long idUsuario;
+    private Long id;
 
     @Column( name = "nome",nullable = false ,length=50)
     private String nome;

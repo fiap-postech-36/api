@@ -11,7 +11,6 @@ import br.com.nomeempresa.restaurante.ports.out.ProdutoPort;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -35,18 +34,18 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     @Transactional
-    public Produto editar(Produto produto){
-        Optional<ProdutoEntity> optionalEntity = produtoRepository.findById(produto.getIdentificadorProduto());
-        if(optionalEntity.isPresent()){
-            var produtoEntity = optionalEntity.get();
-            produtoEntity.setNome(produto.getNome());
-            produtoEntity.setDescricao(produto.getDescricao());
-            produtoEntity.setPreco(produto.getPreco());
-            produtoEntity.setUrlImagem(produto.getUrlImagem());
-            return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
-        }
-        return null;
-    }
+
+    public Produto editar(Produto produto) {
+        ProdutoEntity produtoEntity = produtoRepository
+          .findById(produto.getId())
+          .orElseThrow();
+
+        produtoEntity.setNome(produto.getNome());
+        produtoEntity.setDescricao(produto.getDescricao());
+        produtoEntity.setPreco(produto.getPreco());
+        produtoEntity.setUrlImagem(produto.getUrlImagem());
+        return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
+    } 
 
     @Override
     public void excluir(Long id) {
@@ -55,7 +54,9 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     public Produto buscarPorId(Long id) {
-        return conversorProduto.converterParaDominio(produtoRepository.findById(id));
+        return conversorProduto
+          .converterParaDominio(produtoRepository.findById(id)
+          .orElseThrow());
     }
 
     @Override

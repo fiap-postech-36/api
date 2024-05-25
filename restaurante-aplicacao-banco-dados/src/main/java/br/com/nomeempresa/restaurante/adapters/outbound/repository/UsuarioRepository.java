@@ -1,7 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.outbound.repository;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.UsuarioEntity;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

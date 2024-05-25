@@ -1,7 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.entity;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.types.CategoriaType;
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +13,9 @@ import org.hibernate.annotations.Type;
 public class ProdutoEntity {
 
     @Id
-    @Column(name = "identificadorproduto", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
-    private long identificadorProduto;
+    private long id;
 
     @Column( nullable = false,unique=true,length=50)
     private String nome;
@@ -42,12 +41,12 @@ public class ProdutoEntity {
         this.urlImagem = urlImagem;
     }
 
-    public long getIdentificadorProduto() {
-        return identificadorProduto;
+    public long getId() {
+        return id;
     }
 
-    public void setIdentificadorProduto(long identificadorProduto) {
-        this.identificadorProduto = identificadorProduto;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
