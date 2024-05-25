@@ -8,7 +8,7 @@ import java.util.Date;
 public class Pedido implements Serializable {
 
     private Long identificadorPedido;
-    private Usuario usuario;
+    private Custumer usuario;
     private Collection<Produto> produtos;
     private Date dataHoraHoraCriação;
     private Date dataHoraFinalizacao;
@@ -22,11 +22,11 @@ public class Pedido implements Serializable {
         this.identificadorPedido = identificadorPedido;
     }
 
-    public Usuario getUsuario() {
+    public Custumer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Custumer usuario) {
         this.usuario = usuario;
     }
 

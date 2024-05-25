@@ -1,4 +1,4 @@
-package br.com.nomeempresa.restaurante.adapters.inbound;
+package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.ProdutoRequest;

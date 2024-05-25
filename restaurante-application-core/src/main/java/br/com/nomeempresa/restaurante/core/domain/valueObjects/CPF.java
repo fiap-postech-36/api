@@ -10,4 +10,8 @@ public class CPF {
     public boolean isEmpty (){
         return this.cpf.isEmpty();
     }
+
+    public String getValue() {
+        return cpf;
+    }
 }

@@ -1,49 +1,47 @@
 package br.com.nomeempresa.restaurante.core.service;
 
-import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
-import br.com.nomeempresa.restaurante.ports.in.UsuarioServicePort;
-import br.com.nomeempresa.restaurante.ports.out.UsuarioPort;
+import br.com.nomeempresa.restaurante.core.domain.entities.Custumer;
+import br.com.nomeempresa.restaurante.ports.in.CustumerServicePort;
+import br.com.nomeempresa.restaurante.ports.out.CustumerPort;
 
 import java.util.Collection;
+import java.util.List;
 
-public class UsuarioService implements UsuarioServicePort {
+public class CustumerService implements CustumerServicePort {
 
-    private final UsuarioPort usuarioPort;
+    private final CustumerPort usuarioPort;
 
-
-    public UsuarioService(UsuarioPort salvarUsuarioPort) {
+    public CustumerService(CustumerPort salvarUsuarioPort) {
         this.usuarioPort = salvarUsuarioPort;
-
     }
 
     @Override
-    public Usuario salvar(Usuario usuario) {
-        return usuarioPort.salvar(usuario);
+    public Custumer save(Custumer usuario) {
+        return usuarioPort.save(usuario);
     }
 
     @Override
-    public Usuario buscarPorId(Long id) {
-        return usuarioPort.buscarPorId(id);
+    public Custumer findById(Long id) {
+        return usuarioPort.findById(id);
     }
 
     @Override
-    public Usuario buscarPorCpf(String cpf) {
-        return usuarioPort.buscarPorCpf(cpf);
+    public Custumer findByCpf(String cpf) {
+        return usuarioPort.findByCpf(cpf);
     }
 
     @Override
-    public Collection<Usuario> buscarTodos() {
-        return usuarioPort.buscarTodos();
+    public Collection<Custumer> findAll() {
+        return List.of();
     }
 
     @Override
-    public Usuario atualizar(Usuario usuario) {
-        return usuarioPort.atualizar(usuario);
+    public Custumer update(Custumer usuario) {
+        return usuarioPort.update(usuario);
     }
 
     @Override
-    public void deletar(Long idUsuario) {
-        usuarioPort.deletar(idUsuario);
+    public void delete(Long idUsuario) {
+        usuarioPort.delete(idUsuario);
     }
-
 }

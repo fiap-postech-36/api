@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class UsuarioEntity{
+public class CustumerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;

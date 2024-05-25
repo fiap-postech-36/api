@@ -1,9 +1,8 @@
-package br.com.nomeempresa.restaurante.adapters.inbound;
+package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.CustumerRequest;
 import br.com.nomeempresa.restaurante.core.domain.entities.Custumer;
-import br.com.nomeempresa.restaurante.core.domain.entities.Usuario;
 import br.com.nomeempresa.restaurante.ports.in.CustumerServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -14,7 +13,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/api/v1/usuario")
 @AllArgsConstructor
-public class UsuarioController {
+public class CustumerController {
 
     private final CustumerServicePort usuarioServicePort;
 
