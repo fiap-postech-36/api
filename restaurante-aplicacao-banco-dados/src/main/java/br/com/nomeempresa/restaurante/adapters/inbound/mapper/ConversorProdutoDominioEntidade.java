@@ -5,7 +5,6 @@ import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
 import br.com.nomeempresa.restaurante.core.domain.Categoria;
 import br.com.nomeempresa.restaurante.core.domain.Produto;
 import java.util.stream.Collectors;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class ConversorProdutoDominioEntidade {
 
     public ProdutoEntity converterParaEntidade(Produto produto) {
         ProdutoEntity produtoEntity = new ProdutoEntity();
-        produtoEntity.setIdentificadorProduto(produto.getIdentificadorProduto());
+        produtoEntity.setId(produto.getId());
         produtoEntity.setNome(produto.getNome());
         produtoEntity.setDescricao(produto.getDescricao());
         produtoEntity.setPreco(produto.getPreco());
@@ -46,7 +45,7 @@ public class ConversorProdutoDominioEntidade {
 
     public Produto converterParaDominio(ProdutoEntity produtoEntity) {
         Produto produto = new Produto();
-        produto.setIdentificadorProduto(produtoEntity.getIdentificadorProduto());
+        produto.setId(produtoEntity.getId());
         produto.setNome(produtoEntity.getNome());
         produto.setPreco(produtoEntity.getPreco());
         produto.setDescricao(produtoEntity.getDescricao());

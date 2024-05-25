@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
+import java.math.BigDecimal;
+
 @Table(name = "produto")
 @Entity
 @Getter
@@ -27,7 +29,7 @@ public class ProdutoEntity {
     private String urlImagem;
 
     @Column( nullable = false)
-    private double preco;
+    private BigDecimal preco;
 
     @Enumerated(EnumType.STRING)
     @Type(CategoriaType.class)
@@ -67,11 +69,11 @@ public class ProdutoEntity {
 
 
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 

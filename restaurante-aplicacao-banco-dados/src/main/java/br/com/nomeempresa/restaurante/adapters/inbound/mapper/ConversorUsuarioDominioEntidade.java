@@ -1,6 +1,4 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
-import br.com.nomeempresa.restaurante.core.domain.Produto;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,9 +25,9 @@ public class ConversorUsuarioDominioEntidade {
     public Usuario converterParaDominio(UsuarioEntity usuarioEntity) {
         // Implementação da conversão de UsuarioEntity para Usuario
         Usuario usuario = new Usuario();
-        usuario.setIdUsuario(usuarioEntity.getIdUsuario());
+        usuario.setId(usuarioEntity.getId());
         usuario.setNome(usuarioEntity.getNome());
-        usuario.setCpf(usuarioEntity.getNome());
+        usuario.setCpf(usuarioEntity.getCpf());
         usuario.setEmail(usuarioEntity.getEmail());
         return usuario;
     }
@@ -37,9 +35,9 @@ public class ConversorUsuarioDominioEntidade {
     public UsuarioEntity converterParaEntidade(Usuario usuario){
         // Implementação da conversão de Usuario para UsuarioEntity
         UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setIdUsuario(usuario.getIdUsuario());
+        usuarioEntity.setId(usuario.getId());
         usuarioEntity.setNome(usuario.getNome());
-        usuarioEntity.setCpf(usuario.getNome());
+        usuarioEntity.setCpf(usuario.getCpf());
         usuarioEntity.setEmail(usuario.getEmail());
         return usuarioEntity;
     }

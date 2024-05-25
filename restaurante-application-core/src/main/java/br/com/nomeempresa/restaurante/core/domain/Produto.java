@@ -1,20 +1,29 @@
 package br.com.nomeempresa.restaurante.core.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Produto implements Serializable {
 
-    private long identificadorProduto;
+    private Long id;
     private String nome, descricao,urlImagem;
-    private double preco;
+    private BigDecimal preco;
     private Categoria categoria;
 
-    public long getIdentificadorProduto() {
-        return identificadorProduto;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdentificadorProduto(long identificadorProduto) {
-        this.identificadorProduto = identificadorProduto;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
     }
 
     public Categoria getCategoria() {
@@ -49,13 +58,4 @@ public class Produto implements Serializable {
         this.urlImagem = urlImagem;
     }
 
-
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
 }
