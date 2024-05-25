@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 
 @Component
 @AllArgsConstructor
@@ -38,5 +40,21 @@ public class UsuarioAdapter implements UsuarioPort {
             usuarioRepository.buscarPorCpf(cpf)
                 .orElseThrow()
         );
+    }
+
+    @Override
+    public Usuario atualizar(Usuario usuario) {
+        var usuarioEntity = conversorUsuario.converterParaEntidade(usuario);
+        return conversorUsuario.converterParaDominio(usuarioRepository.save(usuarioEntity));
+    }
+
+    @Override
+    public void deletar(Long idUsuario) {
+        usuarioRepository.deleteById(idUsuario);
+    }
+
+    @Override
+    public Collection<Usuario> buscarTodos() {
+        return conversorUsuario.converterColecaoParaDominio(usuarioRepository.findAll());
     }
 }

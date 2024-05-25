@@ -11,8 +11,12 @@ public interface ProdutoPort {
 
     Produto editar(Produto produto);
 
+    void excluir(Long id);
+
     Produto buscarPorId(Long id);
 
     Collection<Produto> buscarPorCategoria(Categoria categoria);
+
+    Collection<Produto> buscarTodos();
 
 }

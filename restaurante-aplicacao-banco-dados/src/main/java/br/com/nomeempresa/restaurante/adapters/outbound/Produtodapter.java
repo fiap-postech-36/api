@@ -11,8 +11,9 @@ import br.com.nomeempresa.restaurante.ports.out.ProdutoPort;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -33,29 +34,40 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     @Transactional
+
     public Produto editar(Produto produto) {
-        ProdutoEntity produtoEntity = produtoRepository.findById(produto.getIdentificadorProduto())
-            .orElseThrow();
+        ProdutoEntity produtoEntity = produtoRepository
+          .findById(produto.getId())
+          .orElseThrow();
 
         produtoEntity.setNome(produto.getNome());
         produtoEntity.setDescricao(produto.getDescricao());
         produtoEntity.setPreco(produto.getPreco());
         produtoEntity.setUrlImagem(produto.getUrlImagem());
         return conversorProduto.converterParaDominio(produtoRepository.save(produtoEntity));
+    } 
 
+    @Override
+    public void excluir(Long id) {
+        produtoRepository.deleteById(id);
     }
 
     @Override
     public Produto buscarPorId(Long id) {
-        return conversorProduto.converterParaDominio(produtoRepository.findById(id)
-            .orElseThrow());
+        return conversorProduto
+          .converterParaDominio(produtoRepository.findById(id)
+          .orElseThrow());
     }
 
     @Override
     public Collection<Produto> buscarPorCategoria(Categoria categoria) {
+        CategoriaEnum categoriaEntidade= conversorCategoria.converterParaEntidade(categoria);
+        return conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
+    }
 
-        CategoriaEnum categoriaEntidade = conversorCategoria.converterParaEntidade(categoria);
-        Collection<Produto> produtos = conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
-        return produtos;
+    @Override
+    public Collection<Produto> buscarTodos() {
+        List<ProdutoEntity> produtosEntity = produtoRepository.findAll();
+        return conversorProduto.converterColecaoParaDominio(produtosEntity);
     }
 }

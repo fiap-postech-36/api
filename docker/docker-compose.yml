@@ -2,11 +2,13 @@ version: '3.7'
 services:
   db:
     image: postgres:10
+    env_file:
+      - db.env
     container_name: postgres
     environment:
-      - POSTGRES_DB=dev
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
       - TZ=GMT
     ports:
       - 5432:5432

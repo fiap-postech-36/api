@@ -1,7 +1,6 @@
 package br.com.nomeempresa.restaurante.core.service;
 
 import br.com.nomeempresa.restaurante.core.domain.Produto;
-import br.com.nomeempresa.restaurante.core.domain.Usuario;
 import br.com.nomeempresa.restaurante.core.domain.Categoria;
 import br.com.nomeempresa.restaurante.ports.in.ProdutoServicePort;
 import br.com.nomeempresa.restaurante.ports.out.ProdutoPort;
@@ -30,6 +29,11 @@ public class ProdutoService implements ProdutoServicePort {
     }
 
     @Override
+    public void excluir(Long id){
+         this.produtoPort.excluir(id);
+    }
+
+    @Override
     public Produto buscarPorId(Long id){
         return this.produtoPort.buscarPorId(id);
 
@@ -39,6 +43,11 @@ public class ProdutoService implements ProdutoServicePort {
     public Collection<Produto> buscarPorCategoria(Categoria categoria){
         return this.produtoPort.buscarPorCategoria(categoria);
 
+    }
+
+    @Override
+    public Collection<Produto> buscarTodos(){
+        return this.produtoPort.buscarTodos();
     }
 
 

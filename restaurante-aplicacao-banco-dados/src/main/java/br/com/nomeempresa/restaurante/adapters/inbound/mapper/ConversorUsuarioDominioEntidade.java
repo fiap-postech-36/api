@@ -1,39 +1,54 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
-
+import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
+import br.com.nomeempresa.restaurante.core.domain.Produto;
+import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.UsuarioEntity;
 import br.com.nomeempresa.restaurante.core.domain.Usuario;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class ConversorUsuarioDominioEntidade {
 
-    public Usuario converterParaDominio(Optional<UsuarioEntity> usuarioEntity){
-       if(usuarioEntity.isPresent()){
-           var usuario = new Usuario();
-           BeanUtils.copyProperties(usuarioEntity.get(), usuario);
-           return usuario;
-       }
-        return null;
+    public Usuario converterParaDominio(Optional<UsuarioEntity> usuarioEntity) {
+        return usuarioEntity.map(this::converterParaDominioComTratamento).orElse(null);
     }
-
-    public Usuario converterParaDominio(UsuarioEntity usuarioEntity){
-        if(usuarioEntity==null){
+    public Usuario converterParaDominioComTratamento(UsuarioEntity usuarioEntity) {
+        try {
+            return converterParaDominio(usuarioEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
-        var usuario = new Usuario();
-        BeanUtils.copyProperties(usuarioEntity, usuario);
+    }
+
+    public Usuario converterParaDominio(UsuarioEntity usuarioEntity) {
+        // Implementação da conversão de UsuarioEntity para Usuario
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(usuarioEntity.getIdUsuario());
+        usuario.setNome(usuarioEntity.getNome());
+        usuario.setCpf(usuarioEntity.getNome());
+        usuario.setEmail(usuarioEntity.getEmail());
         return usuario;
     }
 
     public UsuarioEntity converterParaEntidade(Usuario usuario){
-        if(usuario==null){
-            return null;
-        }
-        var usuarioEntity = new UsuarioEntity();
-        BeanUtils.copyProperties(usuario, usuarioEntity);
+        // Implementação da conversão de Usuario para UsuarioEntity
+        UsuarioEntity usuarioEntity = new UsuarioEntity();
+        usuarioEntity.setIdUsuario(usuario.getIdUsuario());
+        usuarioEntity.setNome(usuario.getNome());
+        usuarioEntity.setCpf(usuario.getNome());
+        usuarioEntity.setEmail(usuario.getEmail());
         return usuarioEntity;
+    }
+
+    public Collection<Usuario> converterColecaoParaDominio(Collection<UsuarioEntity> usuarioEntities) {
+        return Optional.ofNullable(usuarioEntities)
+                .map(entities -> entities.stream()
+                        .map(this::converterParaDominioComTratamento)
+                        .collect(Collectors.toList()))
+                .orElseGet(ArrayList::new);
     }
 }
