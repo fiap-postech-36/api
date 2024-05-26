@@ -1,0 +1,9 @@
+
+ALTER TABLE Usuario
+    ALTER COLUMN cpf DROP NOT NULL,
+    ALTER COLUMN nome DROP NOT NULL,
+    ALTER COLUMN email DROP NOT NULL;
+
+ALTER TABLE Usuario
+    DROP CONSTRAINT IF EXISTS usuario_email_key,
+    DROP CONSTRAINT IF EXISTS usuario_cpf_key;

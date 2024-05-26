@@ -9,18 +9,18 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class CustumerEntity {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
 
-    @Column( name = "nome",nullable = false ,length=50)
+    @Column( name = "nome",length=50)
     private String nome;
 
-    @Column( name = "cpf",nullable = false,unique=true,length=11)
+    @Column( name = "cpf",unique=true,length=11)
     private String cpf;
 
-    @Column( name = "email",nullable = false,length=50)
+    @Column( name = "email",length=50)
     private String email;
 
 }

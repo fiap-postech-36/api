@@ -7,10 +7,6 @@ public class CPF {
         this.cpf = cpf;
     }
 
-    public boolean isEmpty (){
-        return this.cpf.isEmpty();
-    }
-
     public String getValue() {
         return cpf;
     }
