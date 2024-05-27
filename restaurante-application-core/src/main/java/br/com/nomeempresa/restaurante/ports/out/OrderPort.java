@@ -8,7 +8,10 @@ import java.util.Collection;
 
 public interface OrderPort {
 
-    Order save(final Order order2);
+
+    Order edit(final Order order);
+
+    Order create(final Order order);
 
     void remove(final Long id);
 

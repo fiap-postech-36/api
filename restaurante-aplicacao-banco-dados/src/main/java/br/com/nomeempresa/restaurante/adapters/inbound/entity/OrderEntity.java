@@ -18,14 +18,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Table(name = "order")
+@Table(name = "ordered")
 @Entity
 @Getter
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderEntity {
@@ -48,6 +47,7 @@ public class OrderEntity {
     private LocalDateTime finishedAt;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Setter
     private List<OrderItemEntity> items;
 
 }

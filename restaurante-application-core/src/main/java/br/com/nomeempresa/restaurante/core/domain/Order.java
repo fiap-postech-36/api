@@ -1,6 +1,7 @@
 package br.com.nomeempresa.restaurante.core.domain;
 
 
+import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 
 import java.math.BigDecimal;
@@ -11,11 +12,8 @@ import java.util.Objects;
 public class Order {
 
     private Long id;
-
-    private OrderStatus status;
-
+    private OrderStatus status = OrderStatus.CREATED;
     private LocalDateTime createdAt;
-
     private LocalDateTime finishedAt;
     private List<Produto> items;
 
@@ -61,6 +59,10 @@ public class Order {
 
     public LocalDateTime getFinishedAt() {
         return finishedAt;
+    }
+
+    public void setItems(List<Produto> items) {
+        this.items = items;
     }
 
     public List<Produto> getItems() {

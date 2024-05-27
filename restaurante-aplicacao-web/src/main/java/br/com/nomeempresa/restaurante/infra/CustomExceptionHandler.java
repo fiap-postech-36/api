@@ -4,6 +4,7 @@ import br.com.nomeempresa.restaurante.adapters.inbound.response.ApiErrorMessage;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionNegocial;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
+import br.com.nomeempresa.restaurante.exception.CustomerNotFoundException;
 import br.com.nomeempresa.restaurante.exception.ResourceNotFound;
 import jakarta.validation.ValidationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -18,20 +19,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Collections;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-
 
     @ExceptionHandler(value = {
         IllegalArgumentException.class,
         IllegalStateException.class,
         ValidationException.class,
         CoreExceptionNegocial.class,
-        CoreExceptionRuntime.class})
+        CoreExceptionRuntime.class,
+        CustomerAlreadyExistsException.class})
     protected ResponseEntity<Object> handleBadRequest(
         Exception ex, WebRequest request) {
 
@@ -63,7 +62,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {
         NoSuchElementException.class,
-        ResourceNotFound.class
+        ResourceNotFound.class,
+        CustomerNotFoundException.class
     })
     protected ResponseEntity<Object> handleNotFound(
         Exception ex, WebRequest request) {
@@ -71,16 +71,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
-    @ExceptionHandler(CustomerAlreadyExistsException.class)
-    protected ResponseEntity<Object> handleCustomerAlreadyExists(CustomerAlreadyExistsException ex, WebRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", ex.getMessage());
-
-        return ResponseEntity.status(status).body(response);
     }
 
 

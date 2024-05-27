@@ -16,8 +16,16 @@ public class OrderService implements OrderServicePort {
     }
 
     @Override
-    public Order save(Order order) {
-        return orderPort.save(order);
+    public Order create(Order order) {
+        return orderPort.create(order);
+    }
+
+    @Override
+    public Order edit(Order order) {
+        final var orderDb = orderPort.findById(order.getId());
+        orderDb.setItems(order.getItems());
+        orderPort.create(orderDb);
+        return orderDb;
     }
 
     @Override

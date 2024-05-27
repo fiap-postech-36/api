@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.core.domain;
 
 public enum OrderStatus {
 
+    CREATED("Criado", 0),
     RECEIVED("Recebido", 1),
     IN_PREPARATION("Em preparação", 2),
     READY("Pronto", 3),

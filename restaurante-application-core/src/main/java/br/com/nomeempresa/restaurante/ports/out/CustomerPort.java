@@ -9,11 +9,9 @@ public interface CustomerPort {
 
     Customer findById(Long id);
 
-
     Customer findByCpf(String cpf);
 
     Customer update(Customer usuario);
-
 
     void delete(Long idUsuario);
 
