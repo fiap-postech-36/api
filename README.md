@@ -1,6 +1,9 @@
-# restaurante
+# Restaurante
 
-#Instalação 1
+# Documentação DDD (MIRO)
+Link: https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=275930558866
+
+# Instalação 1
 Será necessário subir dois containers que estarão na mesma rede.
 <p>
 1-Raiz do projeto /restaurante executar o comando: mvn package </br>
@@ -23,7 +26,7 @@ Para acessar o Swagger da aplicação
 http://localhost:8080/restaurante/swagger-ui/index.html#/
 </p>
 
-#Instalação 2
+# Instalação 2
 
 <p>
 Sistema de apoio ao negócio de restaurante </br>
@@ -34,11 +37,11 @@ pre-requisitos: Ter docker instalado </br>
 3-Na pastar docker executar o comando: docker compose up -d </br>
 
 
-#Swagger
+# Swagger
 Para acessar o Swagger da aplicação </br>
 http://localhost:8080/restaurante/swagger-ui/index.html#/ </br>
 
-Imagemd criada restaurante-aplicacao-web:1.0-SNAPSHOT </br>
+Imagem criada restaurante-aplicacao-web:1.0-SNAPSHOT </br>
 Executar apenas a imagem da aplicação </br>
 docker run -p 8080:8080 restaurante-aplicacao-web:1.0-SNAPSHOT </br>
 </p>
