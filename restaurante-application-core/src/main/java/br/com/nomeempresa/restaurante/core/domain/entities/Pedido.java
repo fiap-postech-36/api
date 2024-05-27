@@ -1,4 +1,4 @@
-package br.com.nomeempresa.restaurante.core.domain;
+package br.com.nomeempresa.restaurante.core.domain.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import java.util.Date;
 public class Pedido implements Serializable {
 
     private Long identificadorPedido;
-    private Usuario usuario;
+    private Customer usuario;
     private Collection<Produto> produtos;
     private Date dataHoraHoraCriação;
     private Date dataHoraFinalizacao;
@@ -22,11 +22,11 @@ public class Pedido implements Serializable {
         this.identificadorPedido = identificadorPedido;
     }
 
-    public Usuario getUsuario() {
+    public Customer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Customer usuario) {
         this.usuario = usuario;
     }
 

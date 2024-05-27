@@ -1,9 +1,9 @@
-package br.com.nomeempresa.restaurante.adapters.inbound;
+package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.PaymentRequest;
-import br.com.nomeempresa.restaurante.core.domain.Payment;
-import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
+import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
+import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.in.IPaymentServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

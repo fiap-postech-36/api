@@ -1,8 +1,8 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.PaymentRepository;
-import br.com.nomeempresa.restaurante.core.domain.Payment;
-import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
+import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
+import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.out.IPaymentPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

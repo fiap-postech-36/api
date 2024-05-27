@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.request;
 
-import br.com.nomeempresa.restaurante.core.domain.StatusPayment;
+import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
