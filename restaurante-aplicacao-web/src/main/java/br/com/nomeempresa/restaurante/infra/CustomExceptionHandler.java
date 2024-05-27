@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.infra;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.response.ApiErrorMessage;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionNegocial;
+import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 import br.com.nomeempresa.restaurante.exception.ResourceNotFound;
 import jakarta.validation.ValidationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -22,9 +23,13 @@ import java.util.NoSuchElementException;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler(value
-        = { IllegalArgumentException.class, IllegalStateException.class, ValidationException.class, CoreExceptionNegocial.class})
-    protected ResponseEntity<Object> handleConflict(
+    @ExceptionHandler(value = {
+        IllegalArgumentException.class,
+        IllegalStateException.class,
+        ValidationException.class,
+        CoreExceptionNegocial.class,
+        CoreExceptionRuntime.class})
+    protected ResponseEntity<Object> handleBadRequest(
         Exception ex, WebRequest request) {
 
         HttpStatus status = HttpStatus.BAD_REQUEST;
