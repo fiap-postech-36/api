@@ -2,7 +2,7 @@ package br.com.nomeempresa.restaurante.config;
 
 import br.com.nomeempresa.restaurante.adapters.outbound.Produtodapter;
 import br.com.nomeempresa.restaurante.adapters.outbound.PaymentAdapter;
-import br.com.nomeempresa.restaurante.adapters.outbound.CustumerAdapter;
+import br.com.nomeempresa.restaurante.adapters.outbound.CustomerAdapter;
 import br.com.nomeempresa.restaurante.core.service.ProdutoService;
 import br.com.nomeempresa.restaurante.core.service.PaymentService;
 import br.com.nomeempresa.restaurante.core.service.CustomerService;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
     @Bean
-    public CustomerService usuarioServiceProduces(CustumerAdapter salvarUsuarioAdapter){
+    public CustomerService usuarioServiceProduces(CustomerAdapter salvarUsuarioAdapter){
         return new CustomerService(salvarUsuarioAdapter);
     }
 
