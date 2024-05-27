@@ -1,13 +1,9 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.CategoriaEnum;
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
-import br.com.nomeempresa.restaurante.core.domain.Produto;
-import org.springframework.beans.BeanUtils;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Component

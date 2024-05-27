@@ -1,6 +1,4 @@
-package br.com.nomeempresa.restaurante.core.domain;
-
-import java.io.Serializable;
+package br.com.nomeempresa.restaurante.core.domain.entities;
 
 public enum Categoria {
     LANCHE("LANCHE"),ACOPANHAMENTO("ACOPANHAMENTO"),BEBIDA("BEBIDA"),SOBREMESA("SOBREMESA");

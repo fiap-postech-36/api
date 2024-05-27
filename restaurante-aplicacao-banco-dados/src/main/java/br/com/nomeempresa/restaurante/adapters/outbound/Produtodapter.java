@@ -5,15 +5,14 @@ import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorProdutoDominioEntidade;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorCategoriaDominioEntidade;
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.ProdutoRepository;
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
-import br.com.nomeempresa.restaurante.core.domain.Produto;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
+import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import br.com.nomeempresa.restaurante.ports.out.ProdutoPort;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 
 @Component

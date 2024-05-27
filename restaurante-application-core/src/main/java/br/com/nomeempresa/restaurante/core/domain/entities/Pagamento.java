@@ -1,4 +1,4 @@
-package br.com.nomeempresa.restaurante.core.domain;
+package br.com.nomeempresa.restaurante.core.domain.entities;
 
 import java.io.Serializable;
 import java.util.Date;

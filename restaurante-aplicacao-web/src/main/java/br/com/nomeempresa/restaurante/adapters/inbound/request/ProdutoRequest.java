@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.request;
 
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

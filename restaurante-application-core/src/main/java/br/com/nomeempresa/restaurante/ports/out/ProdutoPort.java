@@ -1,7 +1,7 @@
 package br.com.nomeempresa.restaurante.ports.out;
 
-import br.com.nomeempresa.restaurante.core.domain.Produto;
-import br.com.nomeempresa.restaurante.core.domain.Categoria;
+import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
 
 import java.util.Collection;
 
