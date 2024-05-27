@@ -3,6 +3,7 @@ package br.com.nomeempresa.restaurante.infra;
 import br.com.nomeempresa.restaurante.adapters.inbound.response.ApiErrorMessage;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionNegocial;
 import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
+import br.com.nomeempresa.restaurante.exception.CustomerNotFoundException;
 import br.com.nomeempresa.restaurante.exception.ResourceNotFound;
 import jakarta.validation.ValidationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -26,7 +27,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(value
-        = { IllegalArgumentException.class, IllegalStateException.class, ValidationException.class, CoreExceptionNegocial.class})
+        = { IllegalArgumentException.class, IllegalStateException.class, ValidationException.class, CoreExceptionNegocial.class, CustomerAlreadyExistsException.class})
     protected ResponseEntity<Object> handleConflict(
         Exception ex, WebRequest request) {
 
@@ -58,7 +59,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {
         NoSuchElementException.class,
-        ResourceNotFound.class
+        ResourceNotFound.class,
+            CustomerNotFoundException.class
     })
     protected ResponseEntity<Object> handleNotFound(
         Exception ex, WebRequest request) {
@@ -67,16 +69,5 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
-
-    @ExceptionHandler(CustomerAlreadyExistsException.class)
-    protected ResponseEntity<Object> handleCustomerAlreadyExists(CustomerAlreadyExistsException ex, WebRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", ex.getMessage());
-
-        return ResponseEntity.status(status).body(response);
-    }
-
 
 }

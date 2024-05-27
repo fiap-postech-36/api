@@ -4,6 +4,7 @@ import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDo
 import br.com.nomeempresa.restaurante.adapters.inbound.request.CustomerRequest;
 import br.com.nomeempresa.restaurante.core.domain.entities.Customer;
 import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
+import br.com.nomeempresa.restaurante.exception.CustomerNotFoundException;
 import br.com.nomeempresa.restaurante.ports.in.CustomerServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -25,13 +27,12 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity saveCustomer(@RequestBody @Valid CustomerRequest customerRequest, UriComponentsBuilder uriBuilder) {
 
-        String cpf = customerRequest.cpf();
+        var customerDomain = conversor.convertCustomerToDomain(customerRequest);
 
-        if (cpf != null && !cpf.isEmpty() && customerServicePort.findByCpf(cpf) != null) {
+        var customerHasAccount = Optional.ofNullable(customerServicePort.findByCpf(customerDomain.getCpf().getValue()));
+        if (customerHasAccount.isPresent()) {
             throw new CustomerAlreadyExistsException("Customer already exists");
         }
-
-        var customerDomain = conversor.convertCustomerToDomain(customerRequest);
 
         var customer = customerServicePort.save(customerDomain);
         var uri = uriBuilder.path("/customer/{id}").buildAndExpand(customer.getId()).toUri();
@@ -58,12 +59,22 @@ public class CustomerController {
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findCustomerById(@PathVariable(name = "id", required = false) Long id) {
         var customer = customerServicePort.findById(id);
+
+        if (customer == null) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
+
         return ResponseEntity.ok(customer);
     }
 
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<Customer> findCustomerByCpf(@PathVariable(name = "cpf", required = true) String cpf) {
         var customer = customerServicePort.findByCpf(cpf);
+
+        if (customer == null) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
+
         return ResponseEntity.ok(customer);
     }
 

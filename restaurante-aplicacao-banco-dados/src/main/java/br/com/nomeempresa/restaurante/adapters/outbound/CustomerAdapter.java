@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @Component
 @AllArgsConstructor
-public class CustumerAdapter implements CustomerPort {
+public class CustomerAdapter implements CustomerPort {
 
     private final CustumerRepository usuarioRepository;
 
@@ -29,7 +29,6 @@ public class CustumerAdapter implements CustomerPort {
     public Customer findById(Long id) {
         return conversorUsuario.converterParaDominio(
                 usuarioRepository.findById(id)
-                        .orElseThrow()
         );
     }
 
@@ -37,7 +36,6 @@ public class CustumerAdapter implements CustomerPort {
     public Customer findByCpf(String cpf) {
         return conversorUsuario.converterParaDominio(
                 usuarioRepository.findByCpf(cpf)
-                        .orElseThrow()
         );
     }
 
