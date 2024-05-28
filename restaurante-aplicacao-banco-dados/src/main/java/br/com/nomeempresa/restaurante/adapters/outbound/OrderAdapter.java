@@ -7,6 +7,7 @@ import br.com.nomeempresa.restaurante.adapters.outbound.repository.OrderReposito
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.ProdutoRepository;
 import br.com.nomeempresa.restaurante.core.domain.Order;
 import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
+import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 import br.com.nomeempresa.restaurante.ports.out.OrderPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,6 +31,16 @@ public class OrderAdapter implements OrderPort {
     public Order edit(final Long id, final List<Long> productsId) {
         final var orderEntity = orderRepository.findById(id)
             .orElseThrow();
+
+        if (Objects.isNull(productsId)) {
+            throw new CoreExceptionRuntime("Lista de produtos não pode ser nula");
+        }
+
+        if (productsId.isEmpty()) {
+            orderEntity.setProducts(null);
+            orderRepository.save(orderEntity);
+            return OrderMapper.INSTANCE.orderEntityToOrder(orderEntity);
+        }
 
         List<ProdutoEntity> products = produtoRepository.findByIdIn(productsId);
 
