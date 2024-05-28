@@ -44,7 +44,7 @@ Após isso vá na pasta ```restaurante-aplicacao-web/target/``` e copie o artefa
 
 Depois inicie o container:
 ```bash
- docker run --name restaurante_postgres_container -d -p 5432:5432 restaurante_postgres:1.0
+ docker run --name restaurante_postgres_container --network network_container_aplicacao_banco_restaurante -d -p 5432:5432 restaurante_postgres:1.0
 ```
 
 Depois é só iniciar o container:
