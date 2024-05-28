@@ -13,5 +13,6 @@ public interface IPaymentServicePort {
     Payment getPayment(Long id);
     StatusPayment getStatusPayment(Long id);
     List<Payment> getListPayments();
+    StatusPayment checkout(final Long idOrder);
 
 }

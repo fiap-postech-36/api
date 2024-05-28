@@ -1,12 +1,14 @@
-package br.com.nomeempresa.restaurante.core.domain;
+package br.com.nomeempresa.restaurante.core.domain.entities;
 
 public enum OrderStatus {
 
+    CANCELED("Cancelado", -1),
     CREATED("Criado", 0),
     RECEIVED("Recebido", 1),
     IN_PREPARATION("Em preparação", 2),
     READY("Pronto", 3),
     FINISHED("Finalizado", 4);
+
 
     private final String description;
 

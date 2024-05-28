@@ -1,7 +1,7 @@
 package br.com.nomeempresa.restaurante.adapters.outbound.repository;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderEntity;
-import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
+import br.com.nomeempresa.restaurante.core.domain.entities.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

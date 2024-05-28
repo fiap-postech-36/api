@@ -1,8 +1,8 @@
-package br.com.nomeempresa.restaurante.adapters.inbound;
+package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.request.OrderRequest;
-import br.com.nomeempresa.restaurante.core.domain.Order;
-import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
+import br.com.nomeempresa.restaurante.core.domain.entities.Order;
+import br.com.nomeempresa.restaurante.core.domain.entities.OrderStatus;
 import br.com.nomeempresa.restaurante.ports.in.OrderServicePort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
