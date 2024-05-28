@@ -23,33 +23,16 @@ A API utiliza a arquitetura hexagonal, também conhecida como Arquitetura de Por
 1. Raiz do projeto execute o comando:
 
 ```bash
-  mvn package
+  docker-compose build
 ```
-
-Após isso vá na pasta ```restaurante-aplicacao-web/target/``` e copie o artefato ```application.jar``` para pasta ```docker/aplicacao```.
-
-2. Depois precisa que seja gerado uma rede que conectará os dois container (aplicação e banco de dados)
+2. Após a aplicação buildar, execute o comando abaixo para subir os containers:
 
 ```bash
-  docker network create network_container_aplicacao_banco_restaurante
+  docker-compose up
 ```
-3. Após isso gere a imagem do container da aplicação:
+Alternativa para não bloquear o console
 ```bash
-  docker build -t restaurante_aplicacao:1.0 .
-```
-4. Agora acessa a pasta ```./docker/bancodados``` gere a imagem do container do banco de dados:
-```bash
- docker build -t restaurante_postgres:1.0 --build-arg DB_USER=postgres --build-arg DB_PASSWORD=postgres --build-arg DB_NAME=restaurant .
-```
-
-Depois inicie o container:
-```bash
- docker run --name restaurante_postgres_container --network network_container_aplicacao_banco_restaurante -d -p 5432:5432 restaurante_postgres:1.0
-```
-
-Depois é só iniciar o container:
-```bash
-docker run --name restaurante_aplicacao_container --hostname restaurante-host --network network_container_aplicacao_banco_restaurante -d -p 8080:8080 restaurante_aplicacao:1.0
+  docker-compose up -d
 ```
 
 ## Instalação alternativa
