@@ -17,7 +17,7 @@ Será necessário subir dois containers que estarão na mesma rede.
 -ir para pasta docker/bancodados </br>
 -docker build -t restaurante_postgres:1.0 --build-arg DB_USER=postgres --build-arg DB_PASSWORD=postgres --build-arg DB_NAME=restaurant .</br>
 7-Iniciar o container do banco de dados </br>
--docker run --name restaurante_postgres_container -d -p 5432:5432 restaurante_postgres:1.0 </br>
+-docker run --name restaurante_postgres_container --network network_container_aplicacao_banco_restaurante -d -p 5432:5432 restaurante_postgres:1.0 </br>
 8-Iniciar o container da aplicação </br>
 -docker run  --name restaurante_aplicacao_container --hostname restaurante-host --network network_container_aplicacao_banco_restaurante -d -p 8080:8080 restaurante_aplicacao:1.0 </br>
 </p>
