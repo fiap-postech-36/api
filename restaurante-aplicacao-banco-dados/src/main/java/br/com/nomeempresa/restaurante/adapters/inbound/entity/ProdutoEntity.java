@@ -17,7 +17,7 @@ public class ProdutoEntity {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
-    private long id;
+    private Long id;
 
     @Column( nullable = false,unique=true,length=50)
     private String nome;
@@ -43,11 +43,11 @@ public class ProdutoEntity {
         this.urlImagem = urlImagem;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
