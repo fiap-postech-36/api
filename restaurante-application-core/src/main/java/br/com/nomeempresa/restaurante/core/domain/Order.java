@@ -15,19 +15,19 @@ public class Order {
     private OrderStatus status = OrderStatus.CREATED;
     private LocalDateTime createdAt;
     private LocalDateTime finishedAt;
-    private List<Produto> items;
+    private List<Produto> products;
 
-    public Order(Long id, OrderStatus status, LocalDateTime createdAt, LocalDateTime finishedAt, List<Produto> items) {
+    public Order(Long id, OrderStatus status, LocalDateTime createdAt, LocalDateTime finishedAt, List<Produto> products) {
         this.id = id;
         this.status = status;
         this.createdAt = createdAt;
         this.finishedAt = finishedAt;
-        this.items = items;
+        this.products = products;
     }
 
     public void addItem(final Produto produto) {
-        if (Objects.nonNull(items)) {
-            this.items.add(produto);
+        if (Objects.nonNull(products)) {
+            this.products.add(produto);
         }
     }
 
@@ -41,7 +41,7 @@ public class Order {
         this.status = nextStatus;
     }
     public BigDecimal calculateTotal() {
-        return this.items.stream()
+        return this.products.stream()
             .map(Produto::getPreco)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
@@ -61,12 +61,12 @@ public class Order {
         return finishedAt;
     }
 
-    public void setItems(List<Produto> items) {
-        this.items = items;
+    public void setProducts(List<Produto> products) {
+        this.products = products;
     }
 
-    public List<Produto> getItems() {
-        return items;
+    public List<Produto> getProducts() {
+        return products;
     }
 
 }

@@ -2,10 +2,12 @@ package br.com.nomeempresa.restaurante.core.service;
 
 import br.com.nomeempresa.restaurante.core.domain.Order;
 import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
+import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 import br.com.nomeempresa.restaurante.ports.in.OrderServicePort;
 import br.com.nomeempresa.restaurante.ports.out.OrderPort;
 
 import java.util.Collection;
+import java.util.List;
 
 public class OrderService implements OrderServicePort {
 
@@ -16,16 +18,16 @@ public class OrderService implements OrderServicePort {
     }
 
     @Override
-    public Order create(Order order) {
-        return orderPort.create(order);
+    public Order create(final List<Long> productsId) {
+        if (productsId.isEmpty()) {
+            throw new CoreExceptionRuntime("É necessário incluir itens no pedido");
+        }
+        return orderPort.create(productsId);
     }
 
     @Override
-    public Order edit(Order order) {
-        final var orderDb = orderPort.findById(order.getId());
-        orderDb.setItems(order.getItems());
-        orderPort.create(orderDb);
-        return orderDb;
+    public Order edit(final Long id, final List<Long> productsId) {
+        return orderPort.edit(id, productsId);
     }
 
     @Override

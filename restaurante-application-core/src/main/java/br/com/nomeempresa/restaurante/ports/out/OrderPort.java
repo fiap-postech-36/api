@@ -5,13 +5,14 @@ import br.com.nomeempresa.restaurante.core.domain.Order;
 import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface OrderPort {
 
 
-    Order edit(final Order order);
+    Order edit(final Long id, final List<Long> products);
 
-    Order create(final Order order);
+    Order create(final List<Long> products);
 
     void remove(final Long id);
 

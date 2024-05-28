@@ -1,8 +1,11 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.entity;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.types.CategoriaType;
+import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
@@ -12,6 +15,8 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProdutoEntity {
 
     @Id
@@ -33,7 +38,7 @@ public class ProdutoEntity {
 
     @Enumerated(EnumType.STRING)
     @Type(CategoriaType.class)
-    private CategoriaEnum categoria;
+    private Categoria categoria;
 
     public String getUrlImagem() {
         return urlImagem;
@@ -77,11 +82,11 @@ public class ProdutoEntity {
         this.preco = preco;
     }
 
-    public CategoriaEnum getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaEnum categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 }

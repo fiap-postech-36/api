@@ -1,17 +1,18 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderItemEntity;
+import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderEntity;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
-import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorProdutoDominioEntidade;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.OrderMapper;
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.OrderRepository;
+import br.com.nomeempresa.restaurante.adapters.outbound.repository.ProdutoRepository;
 import br.com.nomeempresa.restaurante.core.domain.Order;
 import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
-import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import br.com.nomeempresa.restaurante.ports.out.OrderPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,19 +21,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderAdapter implements OrderPort {
 
-    private final ConversorProdutoDominioEntidade conversorProduto;
     private final OrderRepository orderRepository;
+    private final ProdutoRepository produtoRepository;
 
     @Override
-    public Order edit(Order order) {
-        final var orderEntity = orderRepository.findById(order.getId())
+    @Transactional
+    public Order edit(final Long id, final List<Long> productsId) {
+        final var orderEntity = orderRepository.findById(id)
             .orElseThrow();
 
-        List<Long> idsItems = order.getItems().stream()
-            .map(Produto::getId)
-            .collect(Collectors.toList());
+        List<ProdutoEntity> products = produtoRepository.findByIdIn(productsId);
 
-        orderEntity.getItems().removeIf(item -> !idsItems.contains(item.getProduct().getId()));
+        orderEntity.getProducts().removeIf(item -> !productsId.contains(item.getId()));
+
+        orderEntity.getProducts().addAll(products);
 
         orderRepository.save(orderEntity);
 
@@ -40,17 +42,10 @@ public class OrderAdapter implements OrderPort {
     }
 
     @Override
-    public Order create(Order order) {
-        final var orderEntity = OrderMapper.INSTANCE.orderToOrderEntity(order);
-        final List<OrderItemEntity> items = order.getItems()
-            .stream()
-            .map(produto ->
-                new OrderItemEntity(null, conversorProduto.converterParaEntidade(produto), orderEntity)
-            )
-            .collect(Collectors.toList());
-
-        orderEntity.setItems(items);
-
+    @Transactional
+    public Order create(final List<Long> productsId) {
+        List<ProdutoEntity> products = produtoRepository.findByIdIn(productsId);
+        final var orderEntity = new OrderEntity(null, OrderStatus.CREATED, LocalDateTime.now(), null, products);
         final var orderSaved = orderRepository.save(orderEntity);
 
         return OrderMapper.INSTANCE.orderEntityToOrder(orderSaved);

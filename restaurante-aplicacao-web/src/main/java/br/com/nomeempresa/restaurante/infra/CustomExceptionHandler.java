@@ -7,6 +7,7 @@ import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
 import br.com.nomeempresa.restaurante.exception.CustomerNotFoundException;
 import br.com.nomeempresa.restaurante.exception.ResourceNotFound;
 import jakarta.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
+@Slf4j
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {
@@ -55,7 +57,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleInternal(
         Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-
+        log.info(ex.getMessage());
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
