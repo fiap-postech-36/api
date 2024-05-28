@@ -31,7 +31,7 @@ public class Config {
     }
 
     @Bean
-    public PaymentService paymentServiceProduces(PaymentAdapter paymentAdapter){
-        return new PaymentService(paymentAdapter);
+    public PaymentService paymentServiceProduces(PaymentAdapter paymentAdapter, OrderAdapter orderAdapter){
+        return new PaymentService(paymentAdapter, this.orderService(orderAdapter));
     }
 }

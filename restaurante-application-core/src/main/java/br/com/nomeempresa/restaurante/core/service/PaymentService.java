@@ -3,8 +3,10 @@ package br.com.nomeempresa.restaurante.core.service;
 import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
 import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.in.IPaymentServicePort;
+import br.com.nomeempresa.restaurante.ports.in.OrderServicePort;
 import br.com.nomeempresa.restaurante.ports.out.IPaymentPort;
 
+import java.beans.Transient;
 import java.util.List;
 
 public class PaymentService implements IPaymentServicePort {
@@ -12,8 +14,11 @@ public class PaymentService implements IPaymentServicePort {
 
     private final IPaymentPort iPaymentPort;
 
-    public PaymentService(IPaymentPort iPaymentPort) {
+    private final OrderServicePort orderServicePort;
+
+    public PaymentService(final IPaymentPort iPaymentPort, final OrderServicePort orderServicePort) {
         this.iPaymentPort = iPaymentPort;
+        this.orderServicePort = orderServicePort;
     }
 
     @Override
@@ -39,5 +44,19 @@ public class PaymentService implements IPaymentServicePort {
     @Override
     public List<Payment> getListPayments() {
         return iPaymentPort.getListPayments();
+    }
+
+    @Override
+    public StatusPayment checkout(final Long idOrder) {
+        final var order = orderServicePort.findById(idOrder);
+        final var paymentStatus = iPaymentPort.checkout(order);
+
+        if (StatusPayment.PAID == paymentStatus) {
+            order.sendToKitchen();
+            orderServicePort.save(order);
+            final var payment = new Payment(order.calculateTotal(), null, order, paymentStatus);
+            iPaymentPort.save(payment);
+        }
+        return paymentStatus;
     }
 }

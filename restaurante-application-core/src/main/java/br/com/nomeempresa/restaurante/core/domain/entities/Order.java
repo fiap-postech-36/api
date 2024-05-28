@@ -1,7 +1,6 @@
-package br.com.nomeempresa.restaurante.core.domain;
+package br.com.nomeempresa.restaurante.core.domain.entities;
 
 
-import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 
 import java.math.BigDecimal;
@@ -12,15 +11,15 @@ import java.util.Objects;
 public class Order {
 
     private Long id;
-    private OrderStatus status = OrderStatus.CREATED;
-    private LocalDateTime createdAt;
+    private OrderStatus status;
+    private LocalDateTime receivedAt;
     private LocalDateTime finishedAt;
     private List<Produto> products;
 
-    public Order(Long id, OrderStatus status, LocalDateTime createdAt, LocalDateTime finishedAt, List<Produto> products) {
+    public Order(Long id, OrderStatus status, LocalDateTime receivedAt, LocalDateTime finishedAt, List<Produto> products) {
         this.id = id;
         this.status = status;
-        this.createdAt = createdAt;
+        this.receivedAt = receivedAt;
         this.finishedAt = finishedAt;
         this.products = products;
     }
@@ -31,14 +30,13 @@ public class Order {
         }
     }
 
-    public void nextStatus() {
-        final var nextStatus = this.status.getNext();
-
-        if (Objects.isNull(nextStatus)) {
-            throw new CoreExceptionRuntime("Pedido já foi finalizado");
+    public void sendToKitchen() {
+        if (OrderStatus.CREATED != this.status) {
+            throw new CoreExceptionRuntime("Status do pedido inválido");
         }
 
-        this.status = nextStatus;
+        this.status = this.status.getNext();
+        this.receivedAt = LocalDateTime.now();
     }
     public BigDecimal calculateTotal() {
         return this.products.stream()
@@ -53,8 +51,8 @@ public class Order {
         return status;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getReceivedAt() {
+        return receivedAt;
     }
 
     public LocalDateTime getFinishedAt() {

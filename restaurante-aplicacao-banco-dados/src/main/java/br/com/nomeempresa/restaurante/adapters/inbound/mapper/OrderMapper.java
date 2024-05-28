@@ -2,7 +2,7 @@ package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderEntity;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
-import br.com.nomeempresa.restaurante.core.domain.Order;
+import br.com.nomeempresa.restaurante.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

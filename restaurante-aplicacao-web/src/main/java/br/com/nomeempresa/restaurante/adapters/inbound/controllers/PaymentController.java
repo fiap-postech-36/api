@@ -7,6 +7,7 @@ import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.ports.in.IPaymentServicePort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class PaymentController {
     @GetMapping("status/{id}")
     public StatusPayment getStatusPayment(@PathVariable(name = "id",required = false) Long id) {
         return iPaymentServicePort.getStatusPayment(id);
+    }
+
+    @PostMapping("/checkout/{idOrder}")
+    public ResponseEntity<StatusPayment> checkout(final @PathVariable Long idOrder) {
+        return ResponseEntity.ok().body(iPaymentServicePort.checkout(idOrder));
     }
 
 }

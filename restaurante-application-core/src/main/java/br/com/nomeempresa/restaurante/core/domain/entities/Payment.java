@@ -11,19 +11,20 @@ public class Payment  implements Serializable {
     private BigDecimal amount;
     private String client;
     private StatusPayment status;
-    private String product;
+
+    private Order order;
     private LocalDateTime date;
 
     public Payment() {}
 
-    public Payment(BigDecimal amount, String client, String product, StatusPayment status) {
+    public Payment(BigDecimal amount, String client, Order order, StatusPayment status) {
         Random random = new Random();
         this.id = (long) random.nextInt(100);
         this.date = LocalDateTime.now();
         this.amount = amount;
         this.client = client;
-        this.product = product;
         this.status = status;
+        this.order = order;
     }
 
     public BigDecimal getAmount() {
@@ -38,10 +39,6 @@ public class Payment  implements Serializable {
         return id;
     }
 
-    public String getProduct() {
-        return product;
-    }
-
     public StatusPayment getStatus() {
         return status;
     }
@@ -52,5 +49,9 @@ public class Payment  implements Serializable {
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 }

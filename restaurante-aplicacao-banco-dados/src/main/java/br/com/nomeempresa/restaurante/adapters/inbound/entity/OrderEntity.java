@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.entity;
 
-import br.com.nomeempresa.restaurante.core.domain.OrderStatus;
+import br.com.nomeempresa.restaurante.core.domain.entities.OrderStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -38,9 +38,8 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @NotNull
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "received_at")
+    private LocalDateTime receivedAt;
 
     @Column(name = "finished_at")
     private LocalDateTime finishedAt;

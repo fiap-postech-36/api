@@ -1,16 +1,21 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.entity;
 
+import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "PAYMENT")
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaymentEntity {
 
     @Id
@@ -25,12 +30,14 @@ public class PaymentEntity {
     private String client;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusPayment status;
 
-    @Column(name = "product", nullable = false)
-    private String product;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private OrderEntity order;
 
-    @Column(name = "date", nullable = false)
-    private LocalDate date;
+    @Column(name = "paymentAt", nullable = false)
+    private LocalDateTime date;
 
 }
