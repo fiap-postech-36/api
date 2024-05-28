@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: postgres
-    url: jdbc:postgresql://localhost:5432/restaurant
-    password: devpassword
+    url: jdbc:postgresql://db:5432/restaurant
+    password: postgres
   flyway:
     locations: classpath:db/migration
   jpa:
