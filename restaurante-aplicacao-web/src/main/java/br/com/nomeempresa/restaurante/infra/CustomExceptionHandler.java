@@ -2,10 +2,12 @@ package br.com.nomeempresa.restaurante.infra;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.response.ApiErrorMessage;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionNegocial;
+import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
 import br.com.nomeempresa.restaurante.exception.CustomerNotFoundException;
 import br.com.nomeempresa.restaurante.exception.ResourceNotFound;
 import jakarta.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,17 +20,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Collections;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
+@Slf4j
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-
-    @ExceptionHandler(value
-        = { IllegalArgumentException.class, IllegalStateException.class, ValidationException.class, CoreExceptionNegocial.class, CustomerAlreadyExistsException.class})
-    protected ResponseEntity<Object> handleConflict(
+    @ExceptionHandler(value = {
+        IllegalArgumentException.class,
+        IllegalStateException.class,
+        ValidationException.class,
+        CoreExceptionNegocial.class,
+        CoreExceptionRuntime.class,
+        CustomerAlreadyExistsException.class})
+    protected ResponseEntity<Object> handleBadRequest(
         Exception ex, WebRequest request) {
 
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -52,7 +57,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleInternal(
         Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-
+        log.info(ex.getMessage());
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
@@ -60,7 +65,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
         NoSuchElementException.class,
         ResourceNotFound.class,
-            CustomerNotFoundException.class
+        CustomerNotFoundException.class
     })
     protected ResponseEntity<Object> handleNotFound(
         Exception ex, WebRequest request) {
@@ -69,5 +74,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
+
 
 }

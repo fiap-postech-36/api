@@ -1,6 +1,5 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.CategoriaEnum;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
 import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
 import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
@@ -22,7 +21,7 @@ public class ConversorProdutoDominioEntidade {
         produtoEntity.setDescricao(produto.getDescricao());
         produtoEntity.setPreco(produto.getPreco());
         produtoEntity.setUrlImagem(produto.getUrlImagem());
-        produtoEntity.setCategoria(CategoriaEnum.fromCode(produto.getCategoria().name()));
+        produtoEntity.setCategoria(Categoria.fromCode(produto.getCategoria().name()));
         return produtoEntity;
     }
 

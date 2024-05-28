@@ -15,7 +15,7 @@ public record ProdutoRequest(
 
         @NotBlank(message = "URL da imagem é obrigatório") String urlImagem,
 
-        @NotNull(message = "Preçoe é obrigatório")
+        @NotNull(message = "Preço é obrigatório")
         @DecimalMin(message = "Menor valor é zero", value = "1.0", inclusive = true)
         BigDecimal preco,
 

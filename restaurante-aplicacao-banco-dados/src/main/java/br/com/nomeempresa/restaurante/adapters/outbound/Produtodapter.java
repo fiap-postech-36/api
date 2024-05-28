@@ -1,6 +1,5 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.CategoriaEnum;
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorProdutoDominioEntidade;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorCategoriaDominioEntidade;
@@ -60,7 +59,7 @@ public class Produtodapter implements ProdutoPort {
 
     @Override
     public Collection<Produto> buscarPorCategoria(Categoria categoria) {
-        CategoriaEnum categoriaEntidade= conversorCategoria.converterParaEntidade(categoria);
+        Categoria categoriaEntidade= conversorCategoria.converterParaEntidade(categoria);
         return conversorProduto.converterColecaoParaDominio(produtoRepository.buscarPorCategoria(categoriaEntidade));
     }
 
