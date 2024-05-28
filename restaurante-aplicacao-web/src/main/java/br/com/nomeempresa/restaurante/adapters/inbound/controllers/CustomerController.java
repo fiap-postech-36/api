@@ -41,8 +41,21 @@ public class CustomerController {
 
     @PutMapping
     public ResponseEntity<Customer> updateCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
-        var customer = customerServicePort.update(conversor.convertCustomerToDomain(customerRequest));
-        return  ResponseEntity.ok(customer);
+        Customer customerDomain = conversor.convertCustomerToDomain(customerRequest);
+
+        boolean custumerExists = Optional.ofNullable(customerServicePort.findById(customerDomain.getId())).isPresent();
+        if (!custumerExists) {
+            throw new CustomerNotFoundException("Invalid Customer ID");
+        }
+
+        var cpfOwner = customerServicePort.findByCpf(customerDomain.getCpf().getValue());
+
+        if (cpfOwner != null && !cpfOwner.getId().equals(customerDomain.getId())) {
+            throw new CustomerAlreadyExistsException("CPF has already been registered by another customer");
+        }
+
+        Customer updatedCustomer = customerServicePort.update(customerDomain);
+        return ResponseEntity.ok(updatedCustomer);
     }
 
     @DeleteMapping("/{id}")
