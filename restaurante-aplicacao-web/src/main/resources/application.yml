@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: postgres
-    url: jdbc:postgresql://db:5432/restaurant
+    url: jdbc:postgresql://restaurante_postgres_container:5432/restaurant?useSSL=false
     password: postgres
   flyway:
     locations: classpath:db/migration
