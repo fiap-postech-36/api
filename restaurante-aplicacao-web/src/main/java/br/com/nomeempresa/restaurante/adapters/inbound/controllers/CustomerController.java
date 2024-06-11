@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
+import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConverterRequestDomain;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.CustomerRequest;
 import br.com.nomeempresa.restaurante.core.domain.entities.Customer;
 import br.com.nomeempresa.restaurante.exception.CustomerAlreadyExistsException;
@@ -22,7 +22,7 @@ public class CustomerController {
 
     private final CustomerServicePort customerServicePort;
 
-    private final ConversorRequestDominio conversor;
+    private final ConverterRequestDomain conversor;
 
     @PostMapping
     public ResponseEntity saveCustomer(@RequestBody @Valid CustomerRequest customerRequest, UriComponentsBuilder uriBuilder) {

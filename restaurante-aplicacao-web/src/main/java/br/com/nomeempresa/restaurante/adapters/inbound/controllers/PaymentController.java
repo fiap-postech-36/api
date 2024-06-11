@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.controllers;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorRequestDominio;
+import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConverterRequestDomain;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.PaymentRequest;
 import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
 import br.com.nomeempresa.restaurante.core.domain.entities.StatusPayment;
@@ -19,7 +19,7 @@ public class PaymentController {
 
     private final IPaymentServicePort iPaymentServicePort;
 
-    private final ConversorRequestDominio converter;
+    private final ConverterRequestDomain converter;
 
     @PostMapping("generate-payment")
     public Payment generatePayment(@RequestBody @Valid PaymentRequest request) {

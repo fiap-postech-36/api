@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
-import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConversorCustomerDomainEntity;
+import br.com.nomeempresa.restaurante.adapters.inbound.mapper.ConverterCustomerDomainEntity;
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.CustumerRepository;
 import br.com.nomeempresa.restaurante.core.domain.entities.Customer;
 import br.com.nomeempresa.restaurante.ports.out.CustomerPort;
@@ -14,44 +14,44 @@ import java.util.Collection;
 @AllArgsConstructor
 public class CustomerAdapter implements CustomerPort {
 
-    private final CustumerRepository usuarioRepository;
+    private final CustumerRepository customerRepository;
 
-    private final ConversorCustomerDomainEntity conversorUsuario;
+    private final ConverterCustomerDomainEntity converterCustomer;
 
     @Override
     @Transactional
-    public Customer save(Customer usuario) {
-        var usuarioEntity = conversorUsuario.converterParaEntidade(usuario);
-        return conversorUsuario.converterParaDominio(usuarioRepository.save(usuarioEntity));
+    public Customer save(Customer customer) {
+        var customerEntity = converterCustomer.convertToEntity(customer);
+        return converterCustomer.converterToDomain(customerRepository.save(customerEntity));
     }
 
     @Override
     public Customer findById(Long id) {
-        return conversorUsuario.converterParaDominio(
-                usuarioRepository.findById(id)
+        return converterCustomer.converterToDomain(
+                customerRepository.findById(id)
         );
     }
 
     @Override
     public Customer findByCpf(String cpf) {
-        return conversorUsuario.converterParaDominio(
-                usuarioRepository.findByCpf(cpf)
+        return converterCustomer.converterToDomain(
+                customerRepository.findByCpf(cpf)
         );
     }
 
     @Override
-    public Customer update(Customer usuario) {
-        var usuarioEntity = conversorUsuario.converterParaEntidade(usuario);
-        return conversorUsuario.converterParaDominio(usuarioRepository.save(usuarioEntity));
+    public Customer update(Customer customer) {
+        var customerEntity = converterCustomer.convertToEntity(customer);
+        return converterCustomer.converterToDomain(customerRepository.save(customerEntity));
     }
 
     @Override
-    public void delete(Long idUsuario) {
-        usuarioRepository.deleteById(idUsuario);
+    public void delete(Long id) {
+        customerRepository.deleteById(id);
     }
 
     @Override
     public Collection<Customer> findAll() {
-        return conversorUsuario.converterColecaoParaDominio(usuarioRepository.findAll());
+        return converterCustomer.converterColecaoParaDominio(customerRepository.findAll());
     }
 }

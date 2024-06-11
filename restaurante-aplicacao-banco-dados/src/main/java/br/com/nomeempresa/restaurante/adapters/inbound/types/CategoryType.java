@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.types;
 
-import br.com.nomeempresa.restaurante.core.domain.entities.Categoria;
+import br.com.nomeempresa.restaurante.core.domain.entities.Category;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 
@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Objects;
 
-public class CategoriaType implements UserType<Categoria> {
+public class CategoryType implements UserType<Category> {
 
-    public static final CategoriaType INSTANCE = new CategoriaType();
+    public static final CategoryType INSTANCE = new CategoryType();
 
     @Override
     public int getSqlType() {
@@ -21,33 +21,33 @@ public class CategoriaType implements UserType<Categoria> {
     }
 
     @Override
-    public Class<Categoria> returnedClass() {
-        return Categoria.class;
+    public Class<Category> returnedClass() {
+        return Category.class;
     }
 
     @Override
-    public boolean equals(Categoria x, Categoria y) {
+    public boolean equals(Category x, Category y) {
         return x.equals(y);
     }
 
     @Override
-    public int hashCode(Categoria x) {
+    public int hashCode(Category x) {
         return Objects.hashCode(x);
     }
 
     @Override
-    public Categoria nullSafeGet(ResultSet rs, int position, SharedSessionContractImplementor session,
+    public Category nullSafeGet(ResultSet rs, int position, SharedSessionContractImplementor session,
                               Object owner) throws SQLException {
         String columnValue = (String) rs.getObject(position);
         if (rs.wasNull()) {
             columnValue = null;
         }
 
-        return Categoria.fromCode(columnValue);
+        return Category.fromCode(columnValue);
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement st, Categoria value, int index,
+    public void nullSafeSet(PreparedStatement st, Category value, int index,
                             SharedSessionContractImplementor session) throws SQLException {
         if (value == null) {
             st.setNull(index, Types.OTHER);
@@ -58,8 +58,8 @@ public class CategoriaType implements UserType<Categoria> {
     }
 
     @Override
-    public Categoria deepCopy(Categoria value) {
-        return value == null ? null : Categoria.fromCode(value.getCode());
+    public Category deepCopy(Category value) {
+        return value == null ? null : Category.fromCode(value.getCode());
     }
 
     @Override
@@ -68,17 +68,17 @@ public class CategoriaType implements UserType<Categoria> {
     }
 
     @Override
-    public Serializable disassemble(Categoria value) {
+    public Serializable disassemble(Category value) {
         return deepCopy(value);
     }
 
     @Override
-    public Categoria assemble(Serializable cached, Object owner) {
-        return deepCopy((Categoria) cached);
+    public Category assemble(Serializable cached, Object owner) {
+        return deepCopy((Category) cached);
     }
 
     @Override
-    public Categoria replace(Categoria detached, Categoria managed, Object owner) {
+    public Category replace(Category detached, Category managed, Object owner) {
         return deepCopy(detached);
     }
 }

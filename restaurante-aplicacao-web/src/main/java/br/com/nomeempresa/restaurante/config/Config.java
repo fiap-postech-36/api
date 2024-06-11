@@ -2,10 +2,10 @@ package br.com.nomeempresa.restaurante.config;
 
 import br.com.nomeempresa.restaurante.adapters.outbound.CustomerAdapter;
 import br.com.nomeempresa.restaurante.adapters.outbound.OrderAdapter;
-import br.com.nomeempresa.restaurante.adapters.outbound.Produtodapter;
+import br.com.nomeempresa.restaurante.adapters.outbound.ProductAdapter;
 import br.com.nomeempresa.restaurante.adapters.outbound.PaymentAdapter;
 import br.com.nomeempresa.restaurante.core.service.OrderService;
-import br.com.nomeempresa.restaurante.core.service.ProdutoService;
+import br.com.nomeempresa.restaurante.core.service.ProductService;
 import br.com.nomeempresa.restaurante.core.service.PaymentService;
 import br.com.nomeempresa.restaurante.core.service.CustomerService;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +26,8 @@ public class Config {
     }
 
     @Bean
-    public ProdutoService produtoServiceProduces(Produtodapter produtoAdapter){
-        return new ProdutoService(produtoAdapter);
+    public ProductService produtoServiceProduces(ProductAdapter produtoAdapter){
+        return new ProductService(produtoAdapter);
     }
 
     @Bean

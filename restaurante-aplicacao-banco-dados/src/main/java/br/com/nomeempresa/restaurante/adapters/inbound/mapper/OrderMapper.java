@@ -1,9 +1,9 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderEntity;
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
+import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProductEntity;
 import br.com.nomeempresa.restaurante.core.domain.entities.Order;
-import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
+import br.com.nomeempresa.restaurante.core.domain.entities.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -22,20 +22,20 @@ public interface OrderMapper {
     OrderEntity orderToOrderEntity(final Order order);
 
     @Named("mapProdutosToProdutoItems")
-    default List<ProdutoEntity> mapProdutosToProdutoItems(List<Produto> produtos) {
+    default List<ProductEntity> mapProdutosToProdutoItems(List<Product> produtos) {
         return produtos.stream()
             .map(this::mapProdutoToProdutoItem)
             .collect(Collectors.toList());
     }
 
-    default ProdutoEntity mapProdutoToProdutoItem(Produto produto) {
-        return new ProdutoEntity(
-            produto.getId(),
-            produto.getNome(),
-            produto.getDescricao(),
-            produto.getUrlImagem(),
-            produto.getPreco(),
-            produto.getCategoria());
+    default ProductEntity mapProdutoToProdutoItem(Product product) {
+        return new ProductEntity(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getUrlImage(),
+                product.getPrice(),
+                product.getCategory());
     }
 
 }

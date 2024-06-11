@@ -5,43 +5,42 @@ import br.com.nomeempresa.restaurante.ports.in.CustomerServicePort;
 import br.com.nomeempresa.restaurante.ports.out.CustomerPort;
 
 import java.util.Collection;
-import java.util.List;
 
 public class CustomerService implements CustomerServicePort {
 
-    private final CustomerPort usuarioPort;
+    private final CustomerPort customerPort;
 
-    public CustomerService(CustomerPort salvarUsuarioPort) {
-        this.usuarioPort = salvarUsuarioPort;
+    public CustomerService(CustomerPort port) {
+        this.customerPort = port;
     }
 
     @Override
     public Customer save(Customer customer) {
-        return usuarioPort.save(customer);
+        return customerPort.save(customer);
     }
 
     @Override
     public Customer findById(Long id) {
-        return usuarioPort.findById(id);
+        return customerPort.findById(id);
     }
 
     @Override
     public Customer findByCpf(String cpf) {
-        return usuarioPort.findByCpf(cpf);
+        return customerPort.findByCpf(cpf);
     }
 
     @Override
     public Collection<Customer> findAll() {
-        return usuarioPort.findAll();
+        return customerPort.findAll();
     }
 
     @Override
     public Customer update(Customer customer) {
-        return usuarioPort.update(customer);
+        return customerPort.update(customer);
     }
 
     @Override
     public void delete(Long idUsuario) {
-        usuarioPort.delete(idUsuario);
+        customerPort.delete(idUsuario);
     }
 }
