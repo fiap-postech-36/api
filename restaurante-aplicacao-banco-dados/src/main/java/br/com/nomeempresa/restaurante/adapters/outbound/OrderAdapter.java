@@ -1,10 +1,10 @@
 package br.com.nomeempresa.restaurante.adapters.outbound;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.entity.OrderEntity;
-import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProdutoEntity;
+import br.com.nomeempresa.restaurante.adapters.inbound.entity.ProductEntity;
 import br.com.nomeempresa.restaurante.adapters.inbound.mapper.OrderMapper;
 import br.com.nomeempresa.restaurante.adapters.outbound.repository.OrderRepository;
-import br.com.nomeempresa.restaurante.adapters.outbound.repository.ProdutoRepository;
+import br.com.nomeempresa.restaurante.adapters.outbound.repository.ProductRepository;
 import br.com.nomeempresa.restaurante.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.core.domain.entities.OrderStatus;
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class OrderAdapter implements OrderPort {
 
     private final OrderRepository orderRepository;
-    private final ProdutoRepository produtoRepository;
+    private final ProductRepository produtoRepository;
 
     @Override
     @Transactional
@@ -42,7 +42,7 @@ public class OrderAdapter implements OrderPort {
             return OrderMapper.INSTANCE.orderEntityToOrder(orderEntity);
         }
 
-        List<ProdutoEntity> products = produtoRepository.findByIdIn(productsId);
+        List<ProductEntity> products = produtoRepository.findByIdIn(productsId);
 
         orderEntity.getProducts().removeIf(item -> !productsId.contains(item.getId()));
 
@@ -63,7 +63,7 @@ public class OrderAdapter implements OrderPort {
     @Override
     @Transactional
     public Order create(final List<Long> productsId) {
-        List<ProdutoEntity> products = produtoRepository.findByIdIn(productsId);
+        List<ProductEntity> products = produtoRepository.findByIdIn(productsId);
         final var orderEntity = new OrderEntity(null, OrderStatus.CREATED, null, null, products);
         final var orderSaved = orderRepository.save(orderEntity);
 

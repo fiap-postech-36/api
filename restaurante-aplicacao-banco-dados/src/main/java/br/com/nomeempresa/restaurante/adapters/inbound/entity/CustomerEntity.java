@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-@Table(name = "usuario")
+@Table(name = "customer")
 @Entity
 @Getter
 @Setter
@@ -14,8 +14,8 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
 
-    @Column( name = "nome",length=50)
-    private String nome;
+    @Column( name = "name",length=50)
+    private String name;
 
     @Column( name = "cpf",unique=true,length=11)
     private String cpf;

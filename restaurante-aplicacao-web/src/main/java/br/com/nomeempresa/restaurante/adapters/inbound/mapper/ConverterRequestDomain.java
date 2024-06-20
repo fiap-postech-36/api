@@ -1,17 +1,17 @@
 package br.com.nomeempresa.restaurante.adapters.inbound.mapper;
 
 import br.com.nomeempresa.restaurante.adapters.inbound.request.PaymentRequest;
-import br.com.nomeempresa.restaurante.adapters.inbound.request.ProdutoRequest;
+import br.com.nomeempresa.restaurante.adapters.inbound.request.ProductRequest;
 import br.com.nomeempresa.restaurante.adapters.inbound.request.CustomerRequest;
 import br.com.nomeempresa.restaurante.core.domain.entities.Customer;
 import br.com.nomeempresa.restaurante.core.domain.entities.Payment;
-import br.com.nomeempresa.restaurante.core.domain.entities.Produto;
+import br.com.nomeempresa.restaurante.core.domain.entities.Product;
 import br.com.nomeempresa.restaurante.core.domain.valueObjects.CPF;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConversorRequestDominio {
+public class ConverterRequestDomain {
 
     public Customer convertCustomerToDomain (CustomerRequest customerRequest){
         var customer = new Customer();
@@ -24,8 +24,8 @@ public class ConversorRequestDominio {
         return customer;
     }
 
-    public Produto converterProdutoParaDominio(ProdutoRequest produtoRequest){
-        var produto = new Produto();
+    public Product convertProductToDomain(ProductRequest produtoRequest){
+        var produto = new Product();
         BeanUtils.copyProperties(produtoRequest, produto);
         return produto;
     }

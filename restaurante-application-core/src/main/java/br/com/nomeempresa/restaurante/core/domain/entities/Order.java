@@ -3,20 +3,21 @@ package br.com.nomeempresa.restaurante.core.domain.entities;
 
 import br.com.nomeempresa.restaurante.core.exception.CoreExceptionRuntime;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
 
     private Long id;
     private OrderStatus status;
     private LocalDateTime receivedAt;
     private LocalDateTime finishedAt;
-    private List<Produto> products;
+    private List<Product> products;
 
-    public Order(Long id, OrderStatus status, LocalDateTime receivedAt, LocalDateTime finishedAt, List<Produto> products) {
+    public Order(Long id, OrderStatus status, LocalDateTime receivedAt, LocalDateTime finishedAt, List<Product> products) {
         this.id = id;
         this.status = status;
         this.receivedAt = receivedAt;
@@ -24,7 +25,7 @@ public class Order {
         this.products = products;
     }
 
-    public void addItem(final Produto produto) {
+    public void addItem(final Product produto) {
         if (Objects.nonNull(products)) {
             this.products.add(produto);
         }
@@ -40,7 +41,7 @@ public class Order {
     }
     public BigDecimal calculateTotal() {
         return this.products.stream()
-            .map(Produto::getPreco)
+            .map(Product::getPrice)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
     public Long getId() {
@@ -59,11 +60,11 @@ public class Order {
         return finishedAt;
     }
 
-    public void setProducts(List<Produto> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
-    public List<Produto> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
