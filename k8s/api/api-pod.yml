@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod
+  labels:
+    app: api-pod
+spec:
+  containers:
+    - name: api-restaurant-container
+      image: samuelmolendolff/api-restaurant:1
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: api-configmap

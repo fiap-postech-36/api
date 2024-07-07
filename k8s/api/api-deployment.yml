@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  template:
+    metadata:
+      name: api-pod
+      labels:
+        app: api-pod
+    spec:
+      containers:
+        - name: api-restaurant-container
+          image: samuelmolendolff/api-restaurant:1
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: api-configmap
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-pod
