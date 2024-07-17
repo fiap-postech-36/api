@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: api-deployment
 spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-pod
   template:
     metadata:
       name: api-pod
@@ -17,7 +21,3 @@ spec:
           envFrom:
             - configMapRef:
                 name: api-configmap
-  replicas: 3
-  selector:
-    matchLabels:
-      app: api-pod
