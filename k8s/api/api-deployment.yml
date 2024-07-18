@@ -21,3 +21,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: api-configmap
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /restaurante/api/v1/produto
+            periodSeconds: 10
+            failureThreshold: 2
+            initialDelaySeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "pg_isready -h svc-db -p 5432"
+            initialDelaySeconds: 15
+            periodSeconds: 10
