@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("select p from ProductEntity p where p.category = ?1")
-    Collection<ProductEntity> findByCategory(Category category);
+    Collection<ProductEntity> findByCategory(final Category category);
 
-    List<ProductEntity> findByIdIn(List<Long> ids);
+    List<ProductEntity> findByIdIn(final List<Long> ids);
 }

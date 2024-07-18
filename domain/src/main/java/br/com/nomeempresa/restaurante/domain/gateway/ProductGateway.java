@@ -5,18 +5,19 @@ import br.com.nomeempresa.restaurante.domain.core.domain.entities.Category;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Product;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface ProductGateway {
 
-    Product save(Product product);
+    Optional<Product> save(final Product product);
 
-    Product update(Product product);
+    Optional<Product> update(final Product product);
 
-    void delete(Long id);
+    void delete(final Long id);
 
-    Product findById(Long id);
+    Optional<Product> findById(final Long id);
 
-    Collection<Product> findByCategory(Category category);
+    Collection<Product> findByCategory(final Category category);
 
     Collection<Product> findAll();
 }

@@ -1,6 +1,7 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
 import br.com.nomeempresa.restaurante.application.inout.input.OrderInput;
+import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.domain.gateway.OrderGateway;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.OrderStatus;
@@ -38,7 +39,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<Order> create(@RequestBody @Valid final OrderInput orderInput) {
-        return ResponseEntity.ok().body(orderGateway.create(orderInput.products()));
+        return ResponseEntity.ok().body(orderGateway.save(OrderInputOutputMapper.INSTANCE.orderEntityToOrder()));
     }
 
     @DeleteMapping("/{id}")

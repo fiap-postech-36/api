@@ -1,7 +1,7 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
 import br.com.nomeempresa.restaurante.application.exception.CustomerAlreadyExistsException;
-import br.com.nomeempresa.restaurante.application.inout.mapper.CustomerRequestResponseMapper;
+import br.com.nomeempresa.restaurante.application.inout.mapper.CustomerInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.input.CustomerInput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Customer;
 import br.com.nomeempresa.restaurante.domain.gateway.CustomerGateway;
@@ -25,7 +25,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity saveCustomer(@RequestBody @Valid CustomerInput customerInput, UriComponentsBuilder uriBuilder) {
 
-        final var customerDomain = CustomerRequestResponseMapper.INSTANCE.customerRequestToCustomer(customerInput);
+        final var customerDomain = CustomerInputOutputMapper.INSTANCE.customerRequestToCustomer(customerInput);
 
         final var customerHasAccount = Optional.ofNullable(customerGateway.findByCpf(customerDomain.getCpf().getValue()));
         if (customerHasAccount.isPresent()) {
@@ -39,7 +39,7 @@ public class CustomerController {
 
     @PutMapping
     public ResponseEntity<Customer> updateCustomer(@RequestBody @Valid CustomerInput customerInput) {
-        Customer customerDomain = CustomerRequestResponseMapper.INSTANCE.customerRequestToCustomer(customerInput);
+        Customer customerDomain = CustomerInputOutputMapper.INSTANCE.customerRequestToCustomer(customerInput);
 
         boolean custumerExists = Optional.ofNullable(customerGateway.findById(customerDomain.getId())).isPresent();
         if (!custumerExists) {

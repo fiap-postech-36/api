@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface OrderRequestResponseMapper {
-    OrderRequestResponseMapper INSTANCE = Mappers.getMapper(OrderRequestResponseMapper.class);
+public interface OrderInputOutputMapper {
+    OrderInputOutputMapper INSTANCE = Mappers.getMapper(OrderInputOutputMapper.class);
 
     @Mapping(source = "products", target = "products", qualifiedByName = "mapProductsItemsToProducts")
     Order orderRequestToOrder(final OrderInput orderInput);

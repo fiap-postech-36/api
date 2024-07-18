@@ -1,6 +1,6 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
-import br.com.nomeempresa.restaurante.application.inout.mapper.ProductRequestResponseMapper;
+import br.com.nomeempresa.restaurante.application.inout.mapper.ProductInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.input.ProductInput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Category;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Product;
@@ -21,19 +21,19 @@ public class ProductController {
 
     @PostMapping
     public Product saveProduct(@RequestBody @Valid final ProductInput productInput){
-        final var product = ProductRequestResponseMapper.INSTANCE.productRequestToProduct(productInput);
+        final var product = ProductInputOutputMapper.INSTANCE.productRequestToProduct(productInput);
         return productGateway.save(product);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable(name = "id",required = false) Long idProduct){
+    public void deleteProduct(@PathVariable(name = "id",required = false) Long idProduct) {
         productGateway.delete(idProduct);
     }
 
 
     @PutMapping
     public Product updateProduct(@RequestBody @Valid ProductInput productInput){
-        final var product = ProductRequestResponseMapper.INSTANCE.productRequestToProduct(productInput);
+        final var product = ProductInputOutputMapper.INSTANCE.productRequestToProduct(productInput);
         return productGateway.update(product);
     }
 
@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("filtro")
-    public Collection<Product> filter(@RequestParam(name = "categoria",required = false) Category categoria){
+    public Collection<Product> filter(@RequestParam(name = "categoria", required = false) Category categoria){
 
         if(categoria!=null){
             return productGateway.findByCategory(categoria);

@@ -11,8 +11,8 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface PaymentRequestResponseMapper {
-    PaymentRequestResponseMapper INSTANCE = Mappers.getMapper(PaymentRequestResponseMapper.class);
+public interface PaymentInputOutputMapper {
+    PaymentInputOutputMapper INSTANCE = Mappers.getMapper(PaymentInputOutputMapper.class);
 
     @Mapping(source = "order", target = "order")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);

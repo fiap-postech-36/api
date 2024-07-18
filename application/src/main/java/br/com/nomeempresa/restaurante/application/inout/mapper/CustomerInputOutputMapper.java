@@ -13,8 +13,8 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface CustomerRequestResponseMapper {
-    CustomerRequestResponseMapper INSTANCE = Mappers.getMapper(CustomerRequestResponseMapper.class);
+public interface CustomerInputOutputMapper {
+    CustomerInputOutputMapper INSTANCE = Mappers.getMapper(CustomerInputOutputMapper.class);
 
     @Mappings({
         @Mapping(source = "email", target = "email", qualifiedByName = "mapEmail"),

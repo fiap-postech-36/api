@@ -2,17 +2,15 @@ package br.com.nomeempresa.restaurante.domain.gateway;
 
 
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
 
 public interface PaymentGateway {
 
-    Payment generatedPayment(Payment payment);
-    Payment updatePayment(Payment payment);
-    Payment getPayment(Long id);
-    StatusPayment getStatusPayment(Long id);
-    List<Payment> getListPayments();
-    StatusPayment checkout(final Long idOrder);
+    Optional<Payment> save(final Payment payment);
+    Optional<Payment> update(final Payment payment);
+    Optional<Payment> findById(final Long id);
+    Collection<Payment> findAll();
 
 }
