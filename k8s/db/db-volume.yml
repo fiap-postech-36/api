@@ -6,9 +6,9 @@ metadata:
     type: local
     app: db-pod
 spec:
-  storageClassName: manual
+  storageClassName: db-storage
   capacity:
-    storage: 10Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteMany
   hostPath:

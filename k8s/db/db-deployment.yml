@@ -22,6 +22,6 @@ spec:
             - configMapRef:
                 name: db-configmap
       volumes:
-        - name: pgdata
+        - name: pg-data
           persistentVolumeClaim:
             claimName: db-volume-claim

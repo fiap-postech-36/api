@@ -2,12 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: db-volume-claim
-  labels:
-    app: db-pod
 spec:
-  storageClassName: manual
+  storageClassName: db-storage
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
