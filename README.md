@@ -59,9 +59,10 @@ Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 
  [![miro](https://img.shields.io/badge/Miro-050038.svg?style=for-the-badge&logo=Miro&logoColor=white)](https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=239546560997)
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
-## TIme de desenvolvimento
+## TIme de desenvolvedores
 
 - [@danpereiramatos](https://www.github.com/danpereiramatos)
 - [@samuelmteixeira](https://www.github.com/samuelmteixeira)
 - [@kaiquesantos98](https://www.github.com/KaiqueSantos98)
 - [@jjbazagajr](https://www.github.com/jjbazagajr)
+- [@leandroibraim](https://www.github.com/leandroibraim)
