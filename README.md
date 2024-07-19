@@ -11,60 +11,55 @@ A API utiliza a arquitetura hexagonal, também conhecida como Arquitetura de Por
 3. Camada de Infraestrutura (Banco de Dados): Esta camada adapta o banco de dados para se comunicar com as portas de entrada do domínio.
 ## Stack utilizada
 
-**Linguagem principal:** Java com Maven
+**Linguagem principal:** Java 17 com Maven
 
 **Web:** Spring Boot, Lombok
 
 **Banco de Dados:** PostgresSQL e Flyway para versionamento do banco
 
+**Infra:** Kubernetes provisionado pelo Docker, versão v1.29.2.
 
-## Instalação
+## Rodando o projeto via Docker
 
-1. Raiz do projeto execute o comando:
-
-```bash
-  docker-compose build
-```
-2. Após a aplicação buildar, execute o comando abaixo para subir os containers:
+1. Raiz do projeto execute o comando abaixo para subir os containers:
 
 ```bash
-  docker-compose up
+  docker-compose up --build
 ```
-Alternativa para não bloquear o console
-```bash
-  docker-compose up -d
-```
+Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 
-## Instalação alternativa
-
-1. Raiz do projeto execute o comando:
-
-```bash
-  mvn package
-```
-
-2. Para gerar o image docker do projeto, execute o comando:
-```bash
-  mvn spring-boot:build-image
-```
-
-3. Na raiz do projeto, abra a pasta docker e execute o comando de execução do docker compose.
-```bash
-  cd docker
-  docker compose up -d
-```
-## Documentação Swagger
-
-Após a instalação, a documentação Swagger da API pode encontrada no seguinte link:
+2. Após a instalação, a documentação Swagger da API pode encontrada no seguinte link:
 
 [http://localhost:8080/restaurante/swagger-ui/index.html](http://localhost:8080/restaurante/swagger-ui/index.html)
+
+
+## Instalação usando Kubernetes
+
+##### ⚠️ Atenção: recomenda-se usar as mesmas tecnologias especificadas na Stack para a criação do cluster, conforme descrito neste readme.
+
+1. O primeiro passo é configurar o Docker Desktop para habilitar o suporte ao Kubernetes. Link do artigo de configuração recomendado [https://www.docker.com/blog/how-kubernetes-works-under-the-hood-with-docker-desktop/](https://www.docker.com/blog/how-kubernetes-works-under-the-hood-with-docker-desktop/)
+
+
+2. Após a configuração, na raiz do projeto, execute o comando que irá iniciar o conjunto de arquivos necessários para o funcionamento do serviço do banco de dados.
+```bash
+  kubectl apply -f .\k8s\db\
+```
+
+3. Em seguida, execute o comando que iniciará o funcionamento da API.
+```bash
+ kubectl apply -f .\k8s\api\ 
+```
+
+4. Após a instalação, a documentação Swagger da API pode encontrada no seguinte link:
+
+[http://localhost:30000/restaurante/swagger-ui/index.html](http://localhost:30000/restaurante/swagger-ui/index.html)
 
 
 ## 🔗 Links
 
  [![miro](https://img.shields.io/badge/Miro-050038.svg?style=for-the-badge&logo=Miro&logoColor=white)](https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=239546560997)
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
-## Autores
+## TIme de desenvolvimento
 
 - [@danpereiramatos](https://www.github.com/danpereiramatos)
 - [@samuelmteixeira](https://www.github.com/samuelmteixeira)
