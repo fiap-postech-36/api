@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public record CustomerInput(
         Long id,
-        String nome,
+        String name,
         @CPF String cpf,
         @Email String email){
 }

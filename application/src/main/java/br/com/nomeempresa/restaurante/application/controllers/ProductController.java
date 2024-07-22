@@ -1,59 +1,64 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
+import br.com.nomeempresa.restaurante.application.facade.ProductFacade;
+import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
 import br.com.nomeempresa.restaurante.application.inout.mapper.ProductInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.input.ProductInput;
+import br.com.nomeempresa.restaurante.application.inout.output.ProductOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Category;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Product;
 import br.com.nomeempresa.restaurante.domain.gateway.ProductGateway;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/produto")
 @AllArgsConstructor
 public class ProductController {
 
-    private final ProductGateway productGateway;
+    private final ProductFacade productFacade;
 
     @PostMapping
-    public Product saveProduct(@RequestBody @Valid final ProductInput productInput){
-        final var product = ProductInputOutputMapper.INSTANCE.productRequestToProduct(productInput);
-        return productGateway.save(product);
+    public ResponseEntity<ProductOutput> saveProduct(@RequestBody @Valid final ProductInput productInput){
+        return ResponseEntity.ok(productFacade.create(productInput));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable(name = "id",required = false) Long idProduct) {
-        productGateway.delete(idProduct);
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long idProduct) {
+        productFacade.delete(idProduct);
+        return ResponseEntity.noContent().build();
     }
 
 
-    @PutMapping
-    public Product updateProduct(@RequestBody @Valid ProductInput productInput){
-        final var product = ProductInputOutputMapper.INSTANCE.productRequestToProduct(productInput);
-        return productGateway.update(product);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductOutput> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductInput productInput){
+        return ResponseEntity.ok(productFacade.update(
+            new ProductInput(
+            id,
+            productInput.name(),
+            productInput.description(),
+            productInput.urlImage(),
+            productInput.price(),
+            productInput.category())));
     }
 
     @GetMapping("/{id}")
-    public Product findByID(@PathVariable(name = "id",required = false) Long id) {
-        return productGateway.findById(id);
+    public ResponseEntity<ProductOutput> findByID(@PathVariable(name = "id",required = false) Long id) throws URISyntaxException {
+        return ResponseEntity.ok(productFacade.get(id));
     }
 
     @GetMapping
-    public Collection<Product> findAll(){
-        return productGateway.findAll();
+    public Page<ProductOutput> findAll(final Map<String, String> filter){
+        return productFacade.filter(new FilterInput(filter));
     }
 
-    @GetMapping("filtro")
-    public Collection<Product> filter(@RequestParam(name = "categoria", required = false) Category categoria){
-
-        if(categoria!=null){
-            return productGateway.findByCategory(categoria);
-        }
-
-        return Collections.EMPTY_LIST;
-    }
 }

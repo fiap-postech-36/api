@@ -15,6 +15,6 @@ public class GetByIdCustomerUseCase implements UseCase<Long, Customer> {
     private final CustomerGateway customerGateway;
     @Override
     public Optional<Customer> execute(final Long id) {
-        return Optional.empty();
+        return Optional.of(customerGateway.findById(id).orElseThrow(RuntimeException::new));
     }
 }

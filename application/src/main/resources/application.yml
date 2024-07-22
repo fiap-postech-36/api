@@ -2,9 +2,10 @@ spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/restaurant?useSSL=false}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:devpassword}
   flyway:
     locations: classpath:db/migration
+    baselineOnMigrate: false
   jpa:
     properties:
       hibernate:

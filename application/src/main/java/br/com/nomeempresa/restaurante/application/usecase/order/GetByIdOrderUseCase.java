@@ -16,6 +16,6 @@ public class GetByIdOrderUseCase implements UseCase<Long, Order> {
     private final OrderGateway orderGateway;
     @Override
     public Optional<Order> execute(final Long id) {
-        return Optional.empty();
+        return Optional.of(orderGateway.findById(id).orElseThrow(RuntimeException::new));
     }
 }

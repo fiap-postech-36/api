@@ -12,5 +12,7 @@ public interface CustomerGateway {
     Optional<Customer> findByCpf(final String cpf);
     Collection<Customer> findAll();
     Optional<Customer> update(final Customer usuario);
+
+    Collection<Customer> filter(final String name, String cpf);
     void delete(final Long idUsuario);
 }

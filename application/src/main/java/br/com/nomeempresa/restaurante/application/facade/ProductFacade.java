@@ -2,17 +2,9 @@ package br.com.nomeempresa.restaurante.application.facade;
 
 import br.com.nomeempresa.restaurante.application.exception.NoResourceFoundException;
 import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
-import br.com.nomeempresa.restaurante.application.inout.input.OrderInput;
 import br.com.nomeempresa.restaurante.application.inout.input.ProductInput;
-import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.mapper.ProductInputOutputMapper;
-import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.ProductOutput;
-import br.com.nomeempresa.restaurante.application.usecase.order.CreateOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.DeleteOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.EditOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.FilterOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.GetByIdOrderUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.product.CreateProductUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.product.DeleteProductUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.product.EditProductUseCase;

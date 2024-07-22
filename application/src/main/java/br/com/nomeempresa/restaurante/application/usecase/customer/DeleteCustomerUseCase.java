@@ -14,6 +14,7 @@ public class DeleteCustomerUseCase implements UseCase<Long, Void> {
     private final CustomerGateway customerGateway;
     @Override
     public Optional<Void> execute(final Long id) {
+        customerGateway.delete(id);
         return Optional.empty();
     }
 }

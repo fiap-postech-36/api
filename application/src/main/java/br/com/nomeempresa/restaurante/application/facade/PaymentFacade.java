@@ -17,6 +17,7 @@ import br.com.nomeempresa.restaurante.application.usecase.payment.CheckoutPaymen
 import br.com.nomeempresa.restaurante.application.usecase.payment.CreatePaymentUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.payment.FilterPaymentUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.payment.GetByIdPaymentUseCase;
+import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -36,8 +37,8 @@ public class PaymentFacade {
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(customerOutPut.orElse(null));
     }
 
-    public void checkout(final Long idOrder) {
-        checkoutPaymentUseCase.execute(idOrder);
+    public StatusPayment checkout(final Long idOrder) {
+        return checkoutPaymentUseCase.execute(idOrder).orElse(null);
     }
 
     public Page<PaymentOutput> filter(final FilterInput filterInput) {

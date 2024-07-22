@@ -7,14 +7,15 @@ import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface PaymentInputOutputMapper {
     PaymentInputOutputMapper INSTANCE = Mappers.getMapper(PaymentInputOutputMapper.class);
 
-    @Mapping(source = "order", target = "order")
+    @Mapping(source = "order", target = "order", qualifiedByName = "mapOrderIdToOrder")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
     PaymentOutput paymentToPaymentResponse(final Payment payment);
 

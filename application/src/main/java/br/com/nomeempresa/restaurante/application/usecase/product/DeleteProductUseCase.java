@@ -1,6 +1,7 @@
 package br.com.nomeempresa.restaurante.application.usecase.product;
 
 import br.com.nomeempresa.restaurante.application.usecase.UseCase;
+import br.com.nomeempresa.restaurante.domain.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +10,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class DeleteProductUseCase implements UseCase<Long, Void> {
+
+    private final ProductGateway productGateway;
     @Override
-    public Optional<Void> execute(final Long idOpt) {
+    public Optional<Void> execute(final Long id) {
+        productGateway.delete(id);
         return Optional.empty();
     }
 }

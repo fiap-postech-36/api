@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS order_item(
 );
 
 ALTER TABLE order_item ADD CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES ordered(id);
-ALTER TABLE order_item ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES produto(id);
+ALTER TABLE order_item ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(id);

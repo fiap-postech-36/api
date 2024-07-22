@@ -47,6 +47,13 @@ public class ProductGatewayImpl implements ProductGateway {
     }
 
     @Override
+    public Collection<Product> filterByCategoryAndName(final Category category, final String name) {
+        return productRepository.filter(category, name).stream()
+            .map(mapper::productEntityToProduct)
+            .toList();
+    }
+
+    @Override
     public Collection<Product> findAll() {
         return productRepository.findAll().stream()
             .map(mapper::productEntityToProduct)

@@ -53,4 +53,9 @@ public class OrderGatewayImpl implements OrderGateway {
             .map(mapper::orderEntityToOrder)
             .toList();
     }
+
+    @Override
+    public Collection<Order> filter(OrderStatus status) {
+        return findByStatus(status);
+    }
 }

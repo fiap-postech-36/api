@@ -19,5 +19,7 @@ public interface ProductGateway {
 
     Collection<Product> findByCategory(final Category category);
 
+    Collection<Product> filterByCategoryAndName(final Category category, final String name);
+
     Collection<Product> findAll();
 }

@@ -20,4 +20,6 @@ public interface OrderGateway {
     Collection<Order> findByStatus(final OrderStatus status);
 
     Collection<Order> findAll();
+
+    Collection<Order> filter(final OrderStatus status);
 }

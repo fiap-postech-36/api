@@ -15,6 +15,6 @@ public class GetByIdPaymentUseCase implements UseCase<Long, Payment> {
     private final PaymentGateway paymentGateway;
     @Override
     public Optional<Payment> execute(final Long id) {
-        return Optional.empty();
+        return paymentGateway.findById(id);
     }
 }

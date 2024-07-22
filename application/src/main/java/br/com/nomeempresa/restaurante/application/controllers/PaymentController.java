@@ -1,51 +1,49 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
 import br.com.nomeempresa.restaurante.application.exception.ResourceNotFound;
+import br.com.nomeempresa.restaurante.application.facade.PaymentFacade;
+import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
 import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.gateway.PaymentGateway;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/payment")
 @AllArgsConstructor
 public class PaymentController {
 
-    private final PaymentGateway paymentGateway;
+    private final PaymentFacade paymentFacade;
 
 
     @PostMapping
-    public Payment generatePayment(@RequestBody @Valid PaymentInput request) {
-        return paymentGateway.generatedPayment(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(request))
-            .orElseThrow(ResourceNotFound::new);
-    }
-
-    @PutMapping
-    public Payment updatePayment(@RequestBody PaymentInput request) {
-        return paymentGateway.updatePayment(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(request))
-            .orElseThrow(ResourceNotFound::new);
+    public ResponseEntity<PaymentOutput> generatePayment(@RequestBody @Valid PaymentInput request) {
+        return ResponseEntity.ok(paymentFacade.create(request));
     }
 
     @GetMapping("/{id}")
-    public Payment getPayment(@PathVariable Long id) {
-        return paymentGateway.getPayment(id).orElseThrow(ResourceNotFound::new);
+    public ResponseEntity<PaymentOutput> getPayment(@PathVariable Long id) {
+        return ResponseEntity.ok(paymentFacade.get(id));
     }
 
     @GetMapping
-    public Collection<Payment> getListPayments() {
-        return paymentGateway.getListPayments();
+    public ResponseEntity<Page<PaymentOutput>> getListPayments(final Map<String, String> filter) {
+        return ResponseEntity.ok(paymentFacade.filter(new FilterInput(filter)));
     }
 
     @PostMapping("/checkout/{idOrder}")
     public ResponseEntity<StatusPayment> checkout(final @PathVariable Long idOrder) {
-        return ResponseEntity.ok().body(paymentGateway.checkout(idOrder).orElseThrow(ResourceNotFound::new));
+        return ResponseEntity.ok().body(paymentFacade.checkout(idOrder));
     }
 
 }

@@ -45,6 +45,13 @@ public class CustomerGatewayImpl implements CustomerGateway {
     }
 
     @Override
+    public Collection<Customer> filter(final String name, final String cpf) {
+        return customerRepository.filter(name, cpf).stream()
+            .map(mapper::customerEntityToCustomer)
+            .toList();
+    }
+
+    @Override
     public void delete(final Long idCustomer) {
         customerRepository.deleteById(idCustomer);
     }
