@@ -1,5 +1,0 @@
-mvn clean package
-docker stop $(docker ps -a -q)
-docker network create network_container_aplicacao_banco_restaurante
-docker build -t restaurante_aplicacao:1.0 .
-docker run  --name restaurante_aplicacao_container --hostname restaurante-host --network network_container_aplicacao_banco_restaurante -d -p 8080:8080 restaurante_aplicacao:1.0

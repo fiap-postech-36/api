@@ -44,24 +44,29 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
-      
-  
-  <modules> 
-    <module>restaurante-application-core</module>
-    <module>restaurante-aplicacao-web</module>
-    <module>restaurante-aplicacao-banco-dados</module>      
+
+
+  <modules>
+    <module>domain</module>
+    <module>application</module>
+    <module>infra</module>
   </modules>
-  
+
   <dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>br.com.nomeempresa.restaurante</groupId>
-            <artifactId>restaurante-application-core</artifactId>
+            <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>br.com.nomeempresa.restaurante</groupId>
-            <artifactId>restaurante-aplicacao-banco-dados</artifactId>
+            <artifactId>infra</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.nomeempresa.restaurante</groupId>
+            <artifactId>application</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
