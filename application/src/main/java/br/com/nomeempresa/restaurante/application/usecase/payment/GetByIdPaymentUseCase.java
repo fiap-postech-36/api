@@ -13,6 +13,11 @@ import java.util.Optional;
 public class GetByIdPaymentUseCase implements UseCase<Long, Payment> {
 
     private final PaymentGateway paymentGateway;
+
+    public GetByIdPaymentUseCase(PaymentGateway paymentGateway) {
+        this.paymentGateway = paymentGateway;
+    }
+
     @Override
     public Optional<Payment> execute(final Long id) {
         return paymentGateway.findById(id);

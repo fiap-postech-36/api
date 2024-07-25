@@ -15,6 +15,11 @@ import java.util.Optional;
 public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
     private final PaymentGateway paymentGateway;
+
+    public CreatePaymentUseCase(PaymentGateway paymentGateway) {
+        this.paymentGateway = paymentGateway;
+    }
+
     @Override
     public Optional<Payment> execute(final PaymentInput paymentInput) {
         return paymentGateway.save(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput));

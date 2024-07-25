@@ -25,6 +25,10 @@ public class PaymentController {
 
     private final PaymentFacade paymentFacade;
 
+    public PaymentController(PaymentFacade paymentFacade) {
+        this.paymentFacade = paymentFacade;
+    }
+
 
     @PostMapping
     public ResponseEntity<PaymentOutput> generatePayment(@RequestBody @Valid PaymentInput request) {

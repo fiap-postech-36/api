@@ -17,7 +17,12 @@ import java.util.Optional;
 public class PaymentGatewayImpl implements PaymentGateway {
 
     private final PaymentRepository paymentRepository;
+
     private final PaymentMapper mapper = PaymentMapper.INSTANCE;
+
+    public PaymentGatewayImpl(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
 
     @Override
     public Optional<Payment> save(final Payment payment) {

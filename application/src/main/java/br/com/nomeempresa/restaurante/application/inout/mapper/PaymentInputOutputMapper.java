@@ -17,6 +17,7 @@ public interface PaymentInputOutputMapper {
 
     @Mapping(source = "order", target = "order", qualifiedByName = "mapOrderIdToOrder")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
+
     PaymentOutput paymentToPaymentResponse(final Payment payment);
 
     @Named("mapOrderIdToOrder")
