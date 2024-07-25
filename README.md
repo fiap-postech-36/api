@@ -54,10 +54,15 @@ Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 
 [http://localhost:30000/restaurante/swagger-ui/index.html](http://localhost:30000/restaurante/swagger-ui/index.html)
 
-
 ## 🔗 Links
+[![miro](https://img.shields.io/badge/Miro-050038.svg?style=for-the-badge&logo=Miro&logoColor=white)](https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=239546560997)
 
- [![miro](https://img.shields.io/badge/Miro-050038.svg?style=for-the-badge&logo=Miro&logoColor=white)](https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=239546560997)
+Link para o Miro do desenho K8S: 
+https://miro.com/welcomeonboard/VklVNW1Ld3R0RHd0dWpQV0xTSjR1NzdDazBoaXdqNzdvT1Z3bkx1Y3l5OHFaRmZPbmJtNDZWVGxKZTR0aGFDSnwzNDU4NzY0NTM5MjI3NTAxMDE3fDI=?share_link_id=738735337519
+Desenho do K8S ![img_1.png](img_1.png)
+Desenho da Solução ![img_2.png](img_2.png)
+
+
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
 ## TIme de desenvolvedores
 
