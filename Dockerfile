@@ -27,7 +27,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copia o JAR do estágio de build para o estágio de runtime
-COPY --from=builder /app/domain/target/*.jar app.jar
+COPY --from=builder /app/application/target/*.jar app.jar
 
 # Concede permissão de execução ao arquivo JAR
 RUN chmod +x app.jar
