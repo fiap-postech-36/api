@@ -1,6 +1,7 @@
 package br.com.nomeempresa.restaurante.application.inout.mapper;
 
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
@@ -18,6 +19,10 @@ public interface PaymentInputOutputMapper {
 
     @Mapping(source = "order", target = "order", qualifiedByName = "mapOrderIdToOrder")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
+
+    @Mapping(source = "order", target = "order")
+    @Mapping(source = "status", target = "status")
+    Payment paymentUpdateRequestToPayment(final PaymentUpdateInput paymentInput);
 
     PaymentOutput paymentToPaymentResponse(final Payment payment);
 

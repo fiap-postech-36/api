@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.application.controllers;
 
 import br.com.nomeempresa.restaurante.application.facade.PaymentFacade;
 import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import jakarta.validation.Valid;
@@ -27,6 +28,11 @@ public class PaymentController {
     @GetMapping("/{id}")
     public ResponseEntity<PaymentOutput> getPayment(@PathVariable Long id) {
         return ResponseEntity.ok(paymentFacade.get(id));
+    }
+
+    @PutMapping("/proces/payments")
+    public ResponseEntity<PaymentOutput> updatePayment(@RequestBody @Valid PaymentUpdateInput request) {
+        return ResponseEntity.ok(paymentFacade.updatePayment(request));
     }
 
     @GetMapping
