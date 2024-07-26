@@ -15,10 +15,6 @@ public class CheckoutPaymentUseCase implements UseCase<Long, StatusPayment> {
 
     private final PaymentGateway paymentGateway;
 
-    public CheckoutPaymentUseCase(PaymentGateway paymentGateway) {
-        this.paymentGateway = paymentGateway;
-    }
-
     @Override
     public Optional<StatusPayment> execute(final Long orderId) {
         return Optional.empty();

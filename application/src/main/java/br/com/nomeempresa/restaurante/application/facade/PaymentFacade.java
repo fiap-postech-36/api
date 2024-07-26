@@ -29,23 +29,12 @@ import java.util.Optional;
 public class PaymentFacade {
 
     private final CreatePaymentUseCase createPaymentUseCase;
-    private final IntegrationPaymentUseCase integrationPaymentUseCase;
     private final CheckoutPaymentUseCase checkoutPaymentUseCase;
     private final FilterPaymentUseCase filterPaymentUseCase;
     private final GetByIdPaymentUseCase getByIdPaymentUseCase;
 
-    public PaymentFacade(CreatePaymentUseCase createPaymentUseCase, IntegrationPaymentUseCase integrationPaymentUseCase, CheckoutPaymentUseCase checkoutPaymentUseCase, FilterPaymentUseCase filterPaymentUseCase, GetByIdPaymentUseCase getByIdPaymentUseCase) {
-        this.createPaymentUseCase = createPaymentUseCase;
-        this.integrationPaymentUseCase = integrationPaymentUseCase;
-        this.checkoutPaymentUseCase = checkoutPaymentUseCase;
-        this.filterPaymentUseCase = filterPaymentUseCase;
-        this.getByIdPaymentUseCase = getByIdPaymentUseCase;
-    }
-
     public PaymentOutput create(final PaymentInput paymentInput) {
         final var customerOutPut = createPaymentUseCase.execute(paymentInput);
-        Optional<QrCode> qrCode = integrationPaymentUseCase.execute(paymentInput);
-        System.out.println(qrCode);
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(customerOutPut.orElse(null));
     }
 

@@ -18,10 +18,6 @@ public class FilterPaymentUseCase implements UseCase<FilterInput, Page<Payment>>
 
     private final PaymentGateway paymentGateway;
 
-    public FilterPaymentUseCase(PaymentGateway paymentGateway) {
-        this.paymentGateway = paymentGateway;
-    }
-
     @Override
     public Optional<Page<Payment>> execute(final FilterInput filterInput) {
         final List<Payment> paymentList = (List<Payment>) paymentGateway.findAll();
