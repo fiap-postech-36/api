@@ -4,6 +4,7 @@ import br.com.nomeempresa.restaurante.application.exception.NoResourceFoundExcep
 import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
 import br.com.nomeempresa.restaurante.application.inout.input.OrderInput;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
@@ -29,6 +30,7 @@ import java.util.Optional;
 public class PaymentFacade {
 
     private final CreatePaymentUseCase createPaymentUseCase;
+    private final UpdatePaymentUseCase updatePaymentUseCase;
     private final CheckoutPaymentUseCase checkoutPaymentUseCase;
     private final FilterPaymentUseCase filterPaymentUseCase;
     private final GetByIdPaymentUseCase getByIdPaymentUseCase;
@@ -56,4 +58,8 @@ public class PaymentFacade {
             .orElseThrow(NoResourceFoundException::new));
     }
 
+    public PaymentOutput updatePayment(final PaymentUpdateInput paymentUpdateInput) {
+        final var customerOutPut = updatePaymentUseCase.execute(paymentUpdateInput);
+        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(customerOutPut.orElse(null));
+    }
 }
