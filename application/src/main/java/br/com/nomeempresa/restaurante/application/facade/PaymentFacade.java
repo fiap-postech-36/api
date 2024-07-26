@@ -13,15 +13,16 @@ import br.com.nomeempresa.restaurante.application.usecase.order.DeleteOrderUseCa
 import br.com.nomeempresa.restaurante.application.usecase.order.EditOrderUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.order.FilterOrderUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.order.GetByIdOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.payment.CheckoutPaymentUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.payment.CreatePaymentUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.payment.FilterPaymentUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.payment.GetByIdPaymentUseCase;
+import br.com.nomeempresa.restaurante.application.usecase.payment.*;
+import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
+import br.com.nomeempresa.restaurante.domain.core.domain.entities.QrCode;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

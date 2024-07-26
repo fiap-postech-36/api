@@ -12,4 +12,6 @@ public record PaymentOutput(
 
         String client,
 
+        String qrCode,
+
         StatusPayment status){}

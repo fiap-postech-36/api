@@ -1,13 +1,8 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
-import br.com.nomeempresa.restaurante.application.exception.ResourceNotFound;
 import br.com.nomeempresa.restaurante.application.facade.PaymentFacade;
-import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
-import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
-import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
-import br.com.nomeempresa.restaurante.domain.gateway.PaymentGateway;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.Map;
 
 @RestController
@@ -24,7 +18,6 @@ import java.util.Map;
 public class PaymentController {
 
     private final PaymentFacade paymentFacade;
-
 
     @PostMapping
     public ResponseEntity<PaymentOutput> generatePayment(@RequestBody @Valid PaymentInput request) {

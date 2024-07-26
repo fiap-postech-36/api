@@ -1,7 +1,6 @@
 package br.com.nomeempresa.restaurante.infra.gateways;
 
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import br.com.nomeempresa.restaurante.domain.gateway.PaymentGateway;
 import br.com.nomeempresa.restaurante.infra.mapper.PaymentMapper;
 import br.com.nomeempresa.restaurante.infra.repository.PaymentRepository;
@@ -9,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -17,6 +15,7 @@ import java.util.Optional;
 public class PaymentGatewayImpl implements PaymentGateway {
 
     private final PaymentRepository paymentRepository;
+
     private final PaymentMapper mapper = PaymentMapper.INSTANCE;
 
     @Override

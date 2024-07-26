@@ -14,8 +14,9 @@ public record PaymentInput(
 
         String client,
 
-        @NotNull(message = "status must be provided")
-        StatusPayment status,
+        String method,
+
+        String descripton,
 
         @NotNull(message = "order must be provided")
         Long order
