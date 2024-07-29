@@ -10,6 +10,7 @@ import br.com.nomeempresa.restaurante.domain.gateway.PaymentGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,12 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
     @Override
     public Optional<Payment> execute(final PaymentInput paymentInput) {
-        Optional<Payment> paymentGenerated = paymentGateway.save(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput));
+        Payment payment = PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput);
+
+        payment.setDate(LocalDateTime.now());
+        payment.setStatus(StatusPayment.PENDING);
+
+        Optional<Payment> paymentGenerated = paymentGateway.save(payment);
 
         if (paymentGenerated.isPresent()) {
             Optional<QrCode> qrCode = integrationPaymentUseCase.execute(paymentInput);

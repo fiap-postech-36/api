@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.application.inout.mapper;
 
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
+import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
@@ -18,6 +19,8 @@ public interface PaymentInputOutputMapper {
     PaymentInputOutputMapper INSTANCE = Mappers.getMapper(PaymentInputOutputMapper.class);
 
     @Mapping(source = "order", target = "order", qualifiedByName = "mapOrderIdToOrder")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "client", target = "client")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
 
     @Mapping(source = "order", target = "order")
@@ -25,6 +28,8 @@ public interface PaymentInputOutputMapper {
     Payment paymentUpdateRequestToPayment(final PaymentUpdateInput paymentInput);
 
     PaymentOutput paymentToPaymentResponse(final Payment payment);
+
+    PaymentBalanceOutput paymentToPaymentBalanceOutput(final Payment payment);
 
     @Mapping(target = "description", source = "descripton")
     @Mapping(source = "amount", target = "transactionAmount")
