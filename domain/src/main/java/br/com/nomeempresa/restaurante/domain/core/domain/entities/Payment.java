@@ -6,10 +6,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Getter
 @EqualsAndHashCode
 @AllArgsConstructor
-@Setter
 public class Payment  implements Serializable {
 
     private Long id;
@@ -20,4 +18,21 @@ public class Payment  implements Serializable {
     private Order order;
     private LocalDateTime date;
 
+    public Payment(Long id, BigDecimal amount, String client, LocalDateTime date, Order order, String qrCode, StatusPayment status) {
+        this.id = id;
+        this.amount = amount;
+        this.client = client;
+        this.date = LocalDateTime.now();
+        this.order = order;
+        this.qrCode = qrCode;
+        this.status = status;
+    }
+
+    public void setStatusPending() {
+        this.status = StatusPayment.PENDING;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
+    }
 }

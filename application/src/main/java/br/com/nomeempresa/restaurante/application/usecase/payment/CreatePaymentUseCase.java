@@ -25,15 +25,12 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
     public Optional<Payment> execute(final PaymentInput paymentInput) {
         Payment payment = PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput);
 
-        payment.setDate(LocalDateTime.now());
-        payment.setStatus(StatusPayment.PENDING);
-
         Optional<Payment> paymentGenerated = paymentGateway.save(payment);
 
         if (paymentGenerated.isPresent()) {
             Optional<QrCode> qrCode = integrationPaymentUseCase.execute(paymentInput);
             paymentGenerated.get().setQrCode(qrCode.get().getPointOfInteraction().getTransactionData().getQrCode());
-            paymentGenerated.get().setStatus(StatusPayment.PENDING);
+            paymentGenerated.get().setStatusPending();
         }
 
         return paymentGenerated;
