@@ -8,6 +8,7 @@ import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput
 import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
+import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.application.usecase.order.CreateOrderUseCase;
 import br.com.nomeempresa.restaurante.application.usecase.order.DeleteOrderUseCase;
@@ -44,22 +45,22 @@ public class PaymentFacade {
         return checkoutPaymentUseCase.execute(idOrder).orElse(null);
     }
 
-    public Page<PaymentOutput> filter(final FilterInput filterInput) {
+    public Page<PaymentBalanceOutput> filter(final FilterInput filterInput) {
         final var page = filterPaymentUseCase.execute(filterInput).orElse(Page.empty());
         final var content = page.getContent().stream()
-            .map(PaymentInputOutputMapper.INSTANCE::paymentToPaymentResponse)
+            .map(PaymentInputOutputMapper.INSTANCE::paymentToPaymentBalanceOutput)
             .toList();
 
         return new PageImpl<>(content, page.getPageable(), page.getTotalElements());
     }
 
-    public PaymentOutput get(final Long id) {
-        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(getByIdPaymentUseCase.execute(id)
+    public PaymentBalanceOutput get(final Long id) {
+        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(getByIdPaymentUseCase.execute(id)
             .orElseThrow(NoResourceFoundException::new));
     }
 
-    public PaymentOutput updatePayment(final PaymentUpdateInput paymentUpdateInput) {
+    public PaymentBalanceOutput updatePayment(final PaymentUpdateInput paymentUpdateInput) {
         final var customerOutPut = updatePaymentUseCase.execute(paymentUpdateInput);
-        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(customerOutPut.orElse(null));
+        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(customerOutPut.orElse(null));
     }
 }

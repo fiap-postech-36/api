@@ -2,13 +2,16 @@
 ### Descrição
 Este projeto tem como objetivo atender aos requisitos do Tech Challenge da pós-graduação em Software Architecture da FIAP. O desafio consiste em desenvolver uma API de autoatendimento para autoatendimento ao cliente de um restaurante.
 
-A API utiliza a arquitetura hexagonal, também conhecida como Arquitetura de Portas e Adaptadores (Ports and Adapters). Esta arquitetura é dividida em três camadas principais:
+A API utiliza a arquitetura clean architecture, essa arquitetura proporciona uma base sólida para construir aplicações robustas e de fácil manutenção, sendo amplamente utilizada em projetos de software modernos.
 
-1. Camada de Core da Aplicação (Domínio): Esta é a camada central e isolada da aplicação, onde residem as regras de negócio. É independente de frameworks e tecnologias externas.
+1. Entities: Contém as regras de negócio mais genéricas e de alto nível. Elas podem ser reutilizadas em diferentes sistemas, se necessário.
 
-2. Camada de Interface (Web): Esta camada lida com a interação com o mundo exterior, incluindo as dependências do framework utilizado. Ela contém os controladores e as rotas da API, que são responsáveis por receber as solicitações dos clientes e enviar as respostas adequadas.
+2. Use Cases: Contém casos de uso específicos da aplicação. Define as operações que podem ser realizadas pelo sistema e coordena o fluxo de dados entre as entidades.
 
-3. Camada de Infraestrutura (Banco de Dados): Esta camada adapta o banco de dados para se comunicar com as portas de entrada do domínio.
+3. Interface Adapters: Converte os dados entre os formatos usados pelos casos de uso e os formatos necessários pela interface externa (bancos de dados, web, etc.).
+
+4. Frameworks and Drivers: Inclui detalhes técnicos, como frameworks e bibliotecas que são usados pelo sistema. Esta camada é onde entram os detalhes de implementação.
+
 ## Stack utilizada
 
 **Linguagem principal:** Java 17 com Maven
