@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.Map;
 
 @RestController
@@ -32,7 +31,7 @@ public class OrderController {
     private final OrderFacade orderFacade;
 
     @GetMapping
-    public ResponseEntity<Page<OrderOutput>> findAll(final Map<String, String> filterParams) {
+    public ResponseEntity<Page<OrderOutput>> findAll(@RequestParam(required = false) final Map<String, String> filterParams) {
         return ResponseEntity.ok().body(orderFacade.filter(new FilterInput(filterParams)));
     }
 

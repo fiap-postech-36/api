@@ -36,7 +36,7 @@ public class PaymentController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PaymentOutput>> getListPayments(final Map<String, String> filter) {
+    public ResponseEntity<Page<PaymentOutput>> getListPayments(@RequestParam(required = false) final Map<String, String> filter) {
         return ResponseEntity.ok(paymentFacade.filter(new FilterInput(filter)));
     }
 

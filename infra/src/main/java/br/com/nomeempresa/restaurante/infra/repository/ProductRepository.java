@@ -2,7 +2,6 @@ package br.com.nomeempresa.restaurante.infra.repository;
 
 import br.com.nomeempresa.restaurante.infra.entity.ProductEntity;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Category;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,6 +15,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     List<ProductEntity> findByIdIn(final List<Long> ids);
 
-    @Query("select p from ProductEntity p where (p.category = :category or :category is null) and (p.name = :name or :name is null)")
-    Collection<ProductEntity> filter(final Category category, final String name);
+    @Query("select p from ProductEntity p where (:name IS NULL or p.name = :name) and (:category is null or cast(p.category as string) = :category)")
+    Collection<ProductEntity> filter(final String name, final String category);
 }

@@ -15,6 +15,6 @@ public class GetByIdProductUseCase implements UseCase<Long, Product> {
     @Override
     public Optional<Product> execute(Long id) {
         final var product = productGateway.findById(id).orElseThrow(RuntimeException::new);
-        return Optional.of(product);
+        return Optional.ofNullable(product);
     }
 }

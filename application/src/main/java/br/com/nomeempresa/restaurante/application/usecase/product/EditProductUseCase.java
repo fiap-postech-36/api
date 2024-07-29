@@ -2,6 +2,7 @@ package br.com.nomeempresa.restaurante.application.usecase.product;
 
 import br.com.nomeempresa.restaurante.application.exception.ResourceNotFound;
 import br.com.nomeempresa.restaurante.application.inout.input.ProductInput;
+import br.com.nomeempresa.restaurante.application.inout.mapper.ProductInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.usecase.UseCase;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Product;
 import br.com.nomeempresa.restaurante.domain.gateway.ProductGateway;
@@ -19,10 +20,8 @@ public class EditProductUseCase implements UseCase<ProductInput, Product> {
 
     @Override
     public Optional<Product> execute(final ProductInput productInput) {
-        final var product = productGateway.findById(productInput.id()).orElseThrow(ResourceNotFound::new);
-        modelMapper.map(productInput, product);
-        productGateway.save(product);
+        productGateway.findById(productInput.id()).orElseThrow(ResourceNotFound::new);
 
-        return Optional.of(product);
+        return productGateway.save(ProductInputOutputMapper.INSTANCE.productInputToProduct(productInput));
     }
 }

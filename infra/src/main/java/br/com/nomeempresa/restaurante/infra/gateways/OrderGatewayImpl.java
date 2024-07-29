@@ -41,7 +41,7 @@ public class OrderGatewayImpl implements OrderGateway {
     }
 
     @Override
-    public Collection<Order> findByStatus(final OrderStatus status) {
+    public Collection<Order> findByStatus(final String status) {
         return orderRepository.findByStatus(status).stream()
             .map(mapper::orderEntityToOrder)
             .toList();
@@ -55,7 +55,7 @@ public class OrderGatewayImpl implements OrderGateway {
     }
 
     @Override
-    public Collection<Order> filter(OrderStatus status) {
+    public Collection<Order> filter(String status) {
         return findByStatus(status);
     }
 }
