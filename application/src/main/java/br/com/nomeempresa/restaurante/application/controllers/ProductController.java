@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public Page<ProductOutput> findAll(final Map<String, String> filter){
+    public Page<ProductOutput> findAll(@RequestParam(required = false) final Map<String, String> filter){
         return productFacade.filter(new FilterInput(filter));
     }
 

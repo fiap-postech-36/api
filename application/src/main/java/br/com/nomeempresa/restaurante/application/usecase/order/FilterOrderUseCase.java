@@ -21,7 +21,7 @@ public class FilterOrderUseCase implements UseCase<FilterInput, Page<Order>> {
     private final OrderGateway orderGateway;
     @Override
     public Optional<Page<Order>> execute(final FilterInput filterInput) {
-        final var status = Objects.nonNull(filterInput.params()) ? OrderStatus.valueOf(filterInput.params().get("status")) : null;
+        final var status = Objects.nonNull(filterInput.params()) ? filterInput.params().get("status") : null;
         final List<Order> orders = (List<Order>) orderGateway.findByStatus(status);
         return Optional.of(new PageImpl<>(orders));
     }

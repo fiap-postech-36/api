@@ -46,7 +46,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<CustomerOutput>> findAllCustomers(final Map<String, String> filter) {
+    public ResponseEntity<Page<CustomerOutput>> findAllCustomers(@RequestParam(required = false) final Map<String, String> filter) {
         return ResponseEntity.ok(customerFacade.filter(new FilterInput(filter)));
     }
 

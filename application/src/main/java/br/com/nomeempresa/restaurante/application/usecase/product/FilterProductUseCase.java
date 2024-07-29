@@ -24,7 +24,7 @@ public class FilterProductUseCase implements UseCase<FilterInput, Page<Product>>
     public Optional<Page<Product>> execute(final FilterInput filterParamOpt) {
         final var filters = filterParamOpt.params();
         final var name = Objects.nonNull(filters) ? filters.get("name") : null;
-        final var category = Objects.nonNull(filters) ? Category.fromCode(filters.get("category")) : null;
+        final var category = Objects.nonNull(filters) ? filters.get("category") : null;
         final List<Product> productsFiltered = (List<Product>) productGateway.filterByCategoryAndName(category, name);
 
         return Optional.of(new PageImpl<>(productsFiltered));

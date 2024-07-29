@@ -1,12 +1,13 @@
 package br.com.nomeempresa.restaurante.infra.repository;
 
 import br.com.nomeempresa.restaurante.infra.entity.OrderEntity;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
-    List<OrderEntity> findByStatus(final OrderStatus orderStatus);
+    @Query("select o from OrderEntity o where (:orderStatus is null or cast (o.status as string) = :orderStatus)")
+    List<OrderEntity> findByStatus(final String orderStatus);
 }
