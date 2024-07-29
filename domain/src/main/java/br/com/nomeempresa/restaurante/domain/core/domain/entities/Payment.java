@@ -32,6 +32,26 @@ public class Payment  implements Serializable {
         this.status = StatusPayment.PENDING;
     }
 
+    public void setStatusPaid() {
+        this.status = StatusPayment.PAID;
+    }
+
+    public void setStatusReject() {
+        this.status = StatusPayment.REJECT;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public StatusPayment getStatus() {
+        return status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
     }
