@@ -35,8 +35,8 @@ public class OrderFacade {
 
     public OrderOutput updateStatusOrder(final Long order) {
         final var orderResponse = getOrderById(order);
-        final var customerOutPut = orderStatusUseCase.execute(orderResponse);
-        return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(customerOutPut.orElse(null));
+        final var orderOutPut = orderStatusUseCase.execute(orderResponse);
+        return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(orderOutPut.orElse(null));
     }
 
     public Page<OrderOutput> filter(final FilterInput filterInput) {

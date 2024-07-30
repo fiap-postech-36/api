@@ -16,7 +16,7 @@ public class OrderStatusUseCase implements UseCase<Order, Order> {
 
     @Override
     public Optional<Order> execute(Order order) {
-        order.sendToKitchen();
+        order.nextStepOrder();
         return orderGateway.save(order);
     }
 }
