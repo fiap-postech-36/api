@@ -1,12 +1,12 @@
 package br.com.nomeempresa.restaurante.application.controllers;
 
 import br.com.nomeempresa.restaurante.application.facade.PaymentFacade;
-import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
+import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
+import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.output.CheckoutResponse;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
