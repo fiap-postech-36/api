@@ -40,7 +40,7 @@ public class Order implements Serializable {
         }
     }
 
-    public void sendToKitchen() {
+    public void nextStepOrder() {
         if (OrderStatus.CREATED != this.status) {
             throw new CoreExceptionRuntime("Status do pedido inválido");
         }
