@@ -2,8 +2,6 @@ package br.com.nomeempresa.restaurante.infra.gateways;
 
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
 import br.com.nomeempresa.restaurante.domain.gateway.PaymentGateway;
-import br.com.nomeempresa.restaurante.infra.entity.OrderEntity;
-import br.com.nomeempresa.restaurante.infra.entity.PaymentEntity;
 import br.com.nomeempresa.restaurante.infra.mapper.PaymentMapper;
 import br.com.nomeempresa.restaurante.infra.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +26,7 @@ public class PaymentGatewayImpl implements PaymentGateway {
 
     @Override
     public Optional<Payment> update(final Payment newPayment) {
-        OrderEntity order = new OrderEntity();
-        order.setId(newPayment.getOrder().getId());
-
-        PaymentEntity payment = this.paymentRepository.findByOrder(order);
-        payment.setStatus(newPayment.getStatus());
-        return Optional.ofNullable(mapper.paymentEntityToPayment(paymentRepository.save(payment)));
+        return save(newPayment);
     }
 
     @Override

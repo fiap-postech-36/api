@@ -3,6 +3,7 @@ package br.com.nomeempresa.restaurante.application.controllers;
 import br.com.nomeempresa.restaurante.application.facade.PaymentFacade;
 import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
+import br.com.nomeempresa.restaurante.application.inout.output.CheckoutResponse;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.StatusPayment;
@@ -30,20 +31,14 @@ public class PaymentController {
     public ResponseEntity<PaymentBalanceOutput> getPayment(@PathVariable Long id) {
         return ResponseEntity.ok(paymentFacade.get(id));
     }
-
-    @PutMapping("/proces/payments")
-    public ResponseEntity<PaymentBalanceOutput> updatePayment(@RequestBody @Valid PaymentUpdateInput request) {
-        return ResponseEntity.ok(paymentFacade.updatePayment(request));
-    }
-
     @GetMapping
     public ResponseEntity<Page<PaymentBalanceOutput>> getListPayments(@RequestParam(required = false) final Map<String, String> filter) {
         return ResponseEntity.ok(paymentFacade.filter(new FilterInput(filter)));
     }
 
-    @PostMapping("/checkout/{idOrder}")
-    public ResponseEntity<StatusPayment> checkout(final @PathVariable Long idOrder) {
-        return ResponseEntity.ok().body(paymentFacade.checkout(idOrder));
+    @PostMapping("/checkout")
+    public ResponseEntity<CheckoutResponse> checkout(@RequestBody @Valid PaymentUpdateInput request) {
+        return ResponseEntity.ok().body(paymentFacade.checkout(request));
     }
 
 }

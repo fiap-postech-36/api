@@ -7,6 +7,7 @@ import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.mapper.PaymentInputOutputMapper;
+import br.com.nomeempresa.restaurante.application.inout.output.CheckoutResponse;
 import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
@@ -31,7 +32,6 @@ import java.util.Optional;
 public class PaymentFacade {
 
     private final CreatePaymentUseCase createPaymentUseCase;
-    private final UpdatePaymentUseCase updatePaymentUseCase;
     private final CheckoutPaymentUseCase checkoutPaymentUseCase;
     private final FilterPaymentUseCase filterPaymentUseCase;
     private final GetByIdPaymentUseCase getByIdPaymentUseCase;
@@ -41,8 +41,8 @@ public class PaymentFacade {
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentResponse(customerOutPut.orElse(null));
     }
 
-    public StatusPayment checkout(final Long idOrder) {
-        return checkoutPaymentUseCase.execute(idOrder).orElse(null);
+    public CheckoutResponse checkout(final PaymentUpdateInput checkoutInput) {
+        return checkoutPaymentUseCase.execute(checkoutInput).orElse(null);
     }
 
     public Page<PaymentBalanceOutput> filter(final FilterInput filterInput) {
@@ -59,8 +59,4 @@ public class PaymentFacade {
             .orElseThrow(NoResourceFoundException::new));
     }
 
-    public PaymentBalanceOutput updatePayment(final PaymentUpdateInput paymentUpdateInput) {
-        final var customerOutPut = updatePaymentUseCase.execute(paymentUpdateInput);
-        return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(customerOutPut.orElse(null));
-    }
 }

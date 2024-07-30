@@ -16,4 +16,9 @@ public class QrCode {
     @JsonProperty("point_of_interaction")
     private PointOfInteraction pointOfInteraction;
 
+
+    public String getQrCode() {
+        return this.getPointOfInteraction().getTransactionData().getQrCode();
+    }
+
 }

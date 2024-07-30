@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface IntegrationLinkPaymentGateway {
 
-    Optional<QrCode> generatedQrCode(PaymentRequest payment);
+    QrCode generatedQrCode(PaymentRequest payment);
 
 }

@@ -9,6 +9,6 @@ import java.util.List;
 public record OrderOutput(
     Long id,
     OrderStatus status,
-    LocalDateTime finishAt,
+    LocalDateTime finishedAt,
     List<Product> items) {
 }
