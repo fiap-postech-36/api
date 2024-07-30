@@ -24,6 +24,10 @@ public class Payment  implements Serializable {
         this.status = StatusPayment.PENDING;
     }
 
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     public void setStatusPaid() {
         this.status = StatusPayment.PAID;
     }

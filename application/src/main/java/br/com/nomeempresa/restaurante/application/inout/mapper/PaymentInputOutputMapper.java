@@ -1,12 +1,10 @@
 package br.com.nomeempresa.restaurante.application.inout.mapper;
 
 import br.com.nomeempresa.restaurante.application.inout.input.PaymentInput;
-import br.com.nomeempresa.restaurante.application.inout.input.PaymentUpdateInput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentBalanceOutput;
 import br.com.nomeempresa.restaurante.application.inout.output.PaymentOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Payment;
-import br.com.nomeempresa.restaurante.infra.feign.presenter.request.PaymentRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -21,15 +19,10 @@ public interface PaymentInputOutputMapper {
     @Mapping(source = "order", target = "order", qualifiedByName = "mapOrderIdToOrder")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
 
-    @Mapping(source = "order", target = "order")
-    @Mapping(source = "status", target = "status")
-    Payment paymentUpdateRequestToPayment(final PaymentUpdateInput paymentInput);
-
     PaymentOutput paymentToPaymentResponse(final Payment payment);
 
     PaymentBalanceOutput paymentToPaymentBalanceOutput(final Payment payment);
 
-    PaymentRequest paymentToPaymentRequest(PaymentInput payment);
 
     @Named("mapOrderIdToOrder")
     default Order mapOrderIdToOrder(final Long orderId) {
