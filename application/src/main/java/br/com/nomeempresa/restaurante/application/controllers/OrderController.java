@@ -59,5 +59,6 @@ public class OrderController {
     public ResponseEntity<OrderOutput> updateStatus(@PathVariable final Long id) {
         return ResponseEntity.ok().body(orderFacade.updateStatusOrder(id));
     }
+
 }
 
