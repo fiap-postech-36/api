@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,5 +58,13 @@ public class OrderGatewayImpl implements OrderGateway {
     @Override
     public Collection<Order> filter(String status) {
         return findByStatus(status);
+    }
+
+    @Override
+    public Collection<Order> findByPriority() {
+        return orderRepository.getByPriority(List.of(OrderStatus.IN_PREPARATION, OrderStatus.RECEIVED, OrderStatus.READY)).stream()
+            .map(mapper::orderEntityToOrder)
+            .sorted(Comparator.comparing(order -> order.getStatus().getFilterOrder()))
+            .toList();
     }
 }

@@ -21,4 +21,6 @@ public interface OrderGateway {
     Collection<Order> findAll();
 
     Collection<Order> filter(final String status);
+
+    Collection<Order> findByPriority();
 }
