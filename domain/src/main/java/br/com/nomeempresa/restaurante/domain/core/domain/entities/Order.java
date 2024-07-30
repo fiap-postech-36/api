@@ -29,8 +29,8 @@ public class Order implements Serializable {
         this.receivedAt = LocalDateTime.now();
     }
 
-    public void setFinish() {
-        this.status = OrderStatus.FINISHED;
+    public void setReceived() {
+        this.status = OrderStatus.RECEIVED;
         this.finishedAt = LocalDateTime.now();
     }
 
