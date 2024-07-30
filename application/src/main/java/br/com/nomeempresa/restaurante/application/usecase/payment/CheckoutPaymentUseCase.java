@@ -29,7 +29,7 @@ public class CheckoutPaymentUseCase implements UseCase<PaymentUpdateInput, Check
 
         Order order = orderGateway.findById(paymentCheckoutInput.order())
             .orElseThrow(RuntimeException::new);
-        order.setFinish();
+        order.setReceived();
         orderGateway.save(order);
 
         return Optional.of(new CheckoutResponse(order.getId(), payment.getStatus()));
