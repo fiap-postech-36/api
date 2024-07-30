@@ -64,22 +64,20 @@ Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 [http://localhost:30000/restaurante/swagger-ui/index.html](http://localhost:30000/restaurante/swagger-ui/index.html)
 
 ## Desenhos da Infraestrutura e da Solução
+Desenho da Solução 
+![img_2.png](/docs/desenho_solucao_img.jpeg)
 
 Desenho do K8S
 ![img_1.png](/docs/desenho_infra_K8S_img.jpeg)
 
-Desenho da Solução 
-![img_2.png](/docs/desenho_solucao_img.jpeg)
-
-
-Link com a explicação do desenho da arquitetura utilizando Kubernetes.
+# Link do video com a explicação do desenho da arquitetura utilizando Kubernetes.
 https://youtu.be/w5A6DyLLNmc
 
 
 ## 🔗 Links
 [![miro](https://img.shields.io/badge/Miro-050038.svg?style=for-the-badge&logo=Miro&logoColor=white)](https://miro.com/app/board/uXjVKM_0wdE=/?share_link_id=239546560997)
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
-## TIme de desenvolvedores
+## Time de desenvolvedores
 
 - [@danpereiramatos](https://www.github.com/danpereiramatos)
 - [@samuelmteixeira](https://www.github.com/samuelmteixeira)
