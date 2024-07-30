@@ -3,10 +3,8 @@ package br.com.nomeempresa.restaurante.application.controllers;
 import br.com.nomeempresa.restaurante.application.facade.OrderFacade;
 import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
 import br.com.nomeempresa.restaurante.application.inout.input.OrderInput;
-import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.OrderStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -55,6 +53,11 @@ public class OrderController {
     @PutMapping("/{id}")
     public ResponseEntity<OrderOutput> edit(@PathVariable final Long id, @RequestBody OrderInput orderInput) {
         return ResponseEntity.ok().body(orderFacade.update(new OrderInput(id, orderInput.products())));
+    }
+
+    @GetMapping("/update-status/{id}")
+    public ResponseEntity<OrderOutput> updateStatus(@PathVariable final Long id) {
+        return ResponseEntity.ok().body(orderFacade.updateStatusOrder(id));
     }
 
 }

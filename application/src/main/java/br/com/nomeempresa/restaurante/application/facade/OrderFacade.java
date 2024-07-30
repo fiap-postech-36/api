@@ -5,11 +5,8 @@ import br.com.nomeempresa.restaurante.application.inout.input.FilterInput;
 import br.com.nomeempresa.restaurante.application.inout.input.OrderInput;
 import br.com.nomeempresa.restaurante.application.inout.mapper.OrderInputOutputMapper;
 import br.com.nomeempresa.restaurante.application.inout.output.OrderOutput;
-import br.com.nomeempresa.restaurante.application.usecase.order.CreateOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.DeleteOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.EditOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.FilterOrderUseCase;
-import br.com.nomeempresa.restaurante.application.usecase.order.GetByIdOrderUseCase;
+import br.com.nomeempresa.restaurante.application.usecase.order.*;
+import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,6 +18,7 @@ public class OrderFacade {
 
     private final CreateOrderUseCase createOrderUseCase;
     private final EditOrderUseCase editOrderUseCase;
+    private final OrderStatusUseCase orderStatusUseCase;
     private final FilterOrderUseCase filterOrderUseCase;
     private final DeleteOrderUseCase deleteOrderUseCase;
     private final GetByIdOrderUseCase getByIdOrderUseCase;
@@ -32,6 +30,12 @@ public class OrderFacade {
 
     public OrderOutput update(final OrderInput orderInput) {
         final var customerOutPut = editOrderUseCase.execute(orderInput);
+        return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(customerOutPut.orElse(null));
+    }
+
+    public OrderOutput updateStatusOrder(final Long order) {
+        final var orderResponse = getOrderById(order);
+        final var customerOutPut = orderStatusUseCase.execute(orderResponse);
         return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(customerOutPut.orElse(null));
     }
 
@@ -49,8 +53,12 @@ public class OrderFacade {
     }
 
     public OrderOutput get(final Long id) {
-        return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(getByIdOrderUseCase.execute(id)
-            .orElseThrow(NoResourceFoundException::new));
+        return OrderInputOutputMapper.INSTANCE.orderToOrderResponse(getOrderById(id));
+    }
+
+    public Order getOrderById(final Long id) {
+        return getByIdOrderUseCase.execute(id)
+                .orElseThrow(NoResourceFoundException::new);
     }
 
 }
