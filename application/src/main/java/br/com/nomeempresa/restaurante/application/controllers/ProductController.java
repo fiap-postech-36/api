@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/produto")
+@RequestMapping("/api/v1/product")
 @AllArgsConstructor
 public class ProductController {
 
