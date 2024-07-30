@@ -2,7 +2,6 @@ package br.com.nomeempresa.restaurante.domain.gateway;
 
 
 import br.com.nomeempresa.restaurante.domain.core.domain.entities.Order;
-import br.com.nomeempresa.restaurante.domain.core.domain.entities.OrderStatus;
 
 import java.util.Collection;
 import java.util.Optional;
