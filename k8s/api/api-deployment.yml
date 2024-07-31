@@ -19,7 +19,7 @@ spec:
           command: ['sh', '-c', 'echo Setting up API, please wait! && sleep 20']
       containers:
         - name: api-restaurant-container
-          image: samuelmolendolff/api-restaurant:1
+          image: samuelmolendolff/api-restaurant:latest
           ports:
             - containerPort: 8080
           envFrom:
