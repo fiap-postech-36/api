@@ -39,10 +39,6 @@ public class Order implements Serializable {
     }
 
     public void nextStepOrder() {
-        if (OrderStatus.CREATED != this.status) {
-            throw new CoreExceptionRuntime("Status do pedido inválido");
-        }
-
         this.status = this.status.getNext();
         this.receivedAt = LocalDateTime.now();
     }
