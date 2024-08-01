@@ -23,3 +23,18 @@ springdoc:
 server:
   servlet:
     context-path: /restaurante
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    defaults:
+      enabled: false
+    db:
+      enabled: true
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
