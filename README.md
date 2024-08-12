@@ -61,7 +61,7 @@ Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 
 4. Após a instalação, a documentação Swagger da API pode encontrada no seguinte link:
 
-[http://localhost:30000/restaurant/swagger-ui/index.html](http://localhost:30000/restaurant/swagger-ui/index.html)
+[http://localhost:8080/restaurant/swagger-ui/index.html](http://localhost:8080/restaurant/swagger-ui/index.html)
 
 ## Desenhos da Infraestrutura e da Solução
 Desenho da Solução 
@@ -84,7 +84,6 @@ Link com a playlist dos videos: https://www.youtube.com/watch?v=2KRZGGU2W9c&list
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
 ## Time de desenvolvedores
 
-- [@danpereiramatos](https://www.github.com/danpereiramatos)
 - [@samuelmteixeira](https://www.github.com/samuelmteixeira)
 - [@kaiquesantos98](https://www.github.com/KaiqueSantos98)
 - [@jjbazagajr](https://www.github.com/jjbazagajr)
