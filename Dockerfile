@@ -1,5 +1,5 @@
 # Etapa 1: Build
-FROM maven:3.8.4-openjdk-17 AS builder
+FROM maven:3.9.8-amazoncorretto-17 AS builder
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -21,16 +21,13 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Runtime
-FROM openjdk:17-jdk-slim
+FROM amazoncorretto:17-alpine
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
 # Copia o JAR do estágio de build para o estágio de runtime
 COPY --from=builder /app/application/target/*.jar app.jar
-
-# Concede permissão de execução ao arquivo JAR
-RUN chmod +x app.jar
 
 # Exponhe a porta em que a aplicação irá rodar
 EXPOSE 8080

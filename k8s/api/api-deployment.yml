@@ -13,13 +13,9 @@ spec:
       labels:
         app: api-pod
     spec:
-      initContainers:
-        - name: wait-for-database
-          image: busybox:1.28
-          command: ['sh', '-c', 'echo Setting up API, please wait! && sleep 20']
       containers:
         - name: api-restaurant-container
-          image: samuelmolendolff/api-restaurant:latest
+          image: samuelmolendolff/api-restaurant:1.3.1-beta
           ports:
             - containerPort: 8080
           envFrom:
@@ -28,10 +24,17 @@ spec:
           livenessProbe:
             httpGet:
               port: 8080
-              path: /restaurante/api/v1/produto
-            periodSeconds: 10
-            failureThreshold: 2
-            initialDelaySeconds: 25
+              path: /restaurant/actuator/health/liveness
+            periodSeconds: 5
+            failureThreshold: 3
+            initialDelaySeconds: 15
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /restaurant/actuator/health/readiness
+            periodSeconds: 5
+            failureThreshold: 3
+            initialDelaySeconds: 15
           resources:
             requests:
               cpu: 10m
