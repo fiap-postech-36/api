@@ -22,4 +22,22 @@ springdoc:
     path: /swagger-ui.html
 server:
   servlet:
-    context-path: /restaurante
+    context-path: /restaurant
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+    beans:
+      cache:
+        time-to-live: 10s
+  health:
+    defaults:
+      enabled: false
+    db:
+      enabled: true
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
