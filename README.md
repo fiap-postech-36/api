@@ -84,6 +84,7 @@ Link com a playlist dos videos: https://www.youtube.com/watch?v=2KRZGGU2W9c&list
 [![trello](https://img.shields.io/badge/Trello-0052CC.svg?style=for-the-badge&logo=Trello&logoColor=white)](https://trello.com/b/66MzITVs/techchalleng-desafio-restaurante)
 ## Time de desenvolvedores
 
+- [@ulysses903](https://github.com/ulysses903)
 - [@samuelmteixeira](https://www.github.com/samuelmteixeira)
 - [@kaiquesantos98](https://www.github.com/KaiqueSantos98)
 - [@jjbazagajr](https://www.github.com/jjbazagajr)
