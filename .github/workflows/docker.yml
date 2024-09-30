@@ -3,8 +3,6 @@ name: Docker
 on:
   push:
     branches: [ "main" ]
-env:
-  IMAGE_NAME: api-teste
 
 jobs:
   build:
@@ -34,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_USER }}/${{ env.IMAGE_NAME }}
+          images: ${{ secrets.DOCKER_USER }}/${{ secrets.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
 
